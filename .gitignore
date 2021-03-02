@@ -9,3 +9,4 @@
 *.synctex.gz
 *.run.xml
 *.log
+.DS_Store
