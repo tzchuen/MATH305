@@ -1,0 +1,452 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.45\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\title{Assignment 1}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.75\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 1}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \begin{enumerate}
+        \item A complex number, $z = x + yi$ has real part $x$ and imaginary
+            part $y$, where $x, \, y \in \mathbb{R}$. We define the addition of two complex numbers, 
+            $z = x+yi$, and $w=u+vi$, as:
+            \begin{equation}
+                z + w := (x+u) + i(y+v), \label{eq:c-add}
+            \end{equation} and the product of two complex numbers as:
+            \begin{equation}
+                zw := (xu - yv) + i(xv+yu) \label{eq:c-prod}
+            \end{equation}
+        
+        \begin{enumerate}[i)]
+            \item Using \autoref{eq:c-add}:
+            \begin{align*}
+                (2+3i) - (1-i) &= (2+3i) + (-1+i) \\
+                               &= (2+(-1)) + i (3+1) \\
+                                &= 1 + 4i
+            \end{align*}
+            $\therefore$ Real part $=1$, imaginary part $=4$. \\
+
+            \item The imaginary unit, $i$, is defined such that:
+            \begin{equation}
+                i^{2} := -1 \label{eq:i}
+            \end{equation}
+            \begin{align*}
+                \therefore i^{3}(1+i) &= i(i^{2})(1+i) \\
+                                    &= i(-1)(1+i)\\
+                                    &= (0 - 1i)(1+1i) \\
+                                    &= [(0)(1)-(-1)(1)] + i[(0)(1)+(-1)(1)] \\
+                                    &= 1 + i(-1) \\
+                                    &= 1 - i
+            \end{align*}
+            $\therefore$ Re$(i^{3}(1+i))=1$, Im$(i^{3}(1+i))=-1$. \\
+
+            \item The inverse of a complex number, $z^{-1}$ is defined as:
+            \begin{equation}
+                z^{-1} := \frac{x-yi}{x^{2}+y^{2}} \label{eq:c-inv}
+            \end{equation}
+            
+            \begin{align*}
+                \frac{2-2i}{4+3i} &= (2-2i)(4+3i)^{-1} \\
+                                &= (2-2i)(\frac{4-3i}{4^{2}+3^{2}}) \\
+                                &= (2-2i)(\frac{4-3i}{25}) \\
+                                &= (2-2i)(\frac{4}{25} - \frac{3}{25}i) \\
+                                &= [2(\frac{4}{25})-(-2)(-\frac{3}{25})] 
+                                + i[2(-\frac{3}{25})+(-2)(\frac{4}{25})] \\
+                                &= (\frac{8}{25}-\frac{6}{25}) + i (-\frac{6}{25}-\frac{8}{25}) \\
+                                &= \frac{2}{25} + i(-\frac{14}{25}) \\
+                                &= \frac{2}{25} - \frac{14}{25}i
+            \end{align*}
+            $\therefore$ Re$(\frac{2-2i}{4+3i})=\frac{2}{25}$, 
+                Im$(\frac{2-2i}{4+3i})=- \frac{14}{25}$ \\
+
+            \item Using \autoref{eq:c-inv}, we can define $\frac{1}{i}$ as:
+            \begin{equation}
+                \frac{1}{i} := \frac{1}{0+1i} = \frac{0 - i}{0^{2}+1^{2}} = -i \label{eq:i-1} 
+            \end{equation}
+
+            \begin{align*}
+                \frac{2}{i} + \frac{i}{2} &= -2i + \frac{1}{2}i \\
+                                        &= -\frac{3}{2}i 
+            \end{align*}
+            $\therefore$ Re$(\frac{2}{i} + \frac{i}{2})=0$, 
+                Im$(\frac{2}{i} + \frac{i}{2})= -\frac{3}{2}$ \\
+            
+            \item Using \autoref{eq:i-1} and \autoref{eq:c-inv}:
+            \begin{align*}
+                \frac{2+i}{1-i} + \frac{3+2i}{i} &= (2+i)(1-i)^{-1} + (-i)(3+2i)\\
+                        &= (2+i)(\frac{1+i}{1^{2}+1^{2}}) + (-2i^{2}-3i) \\
+                        &= (2+i)(\frac{1}{2} + \frac{1}{2}i) + (-2(-1)-3i) \\
+                        &= (2(\frac{1}{2})-1(\frac{1}{2})) + i (2(\frac{1}{2})+1(\frac{1}{2}))
+                        + (2-3i) \\
+                        &= (1-\frac{1}{2}) + i(1+\frac{1}{2}) + (2-3i) \\
+                        &= (\frac{1}{2} + \frac{3}{2}i) + (2 - 3i) \\
+                        &= \frac{5}{2} - \frac{1}{2}i
+            \end{align*}
+            $\therefore$ Re$(\frac{2+i}{1-i} + \frac{3+2i}{i})=\frac{5}{2}$, 
+                Im$(\frac{2+i}{1-i} + \frac{3+2i}{i})= -\frac{1}{2}$ \\
+        \end{enumerate}
+
+        \item 
+        \begin{enumerate}[i)]
+            \item Using \autoref{eq:c-inv}:
+            \begin{align*}
+                \frac{1-i}{2+i} &= (1-i)(2+1)^{-1} \\
+                                &= (1-i)(\frac{2-i}{2^{2}+1^{2}}) \\
+                                &= \frac{1}{5}(1-i)(2-i) \\
+                                &= \frac{1}{5}[(2-1)+i(-1-2)] \\
+                                &= \frac{1}{5}-\frac{3}{5}i
+            \end{align*}
+        We also have that:
+        \begin{equation}
+            |z| := \sqrt{x^{2}+y^{2}}, \label{eq:abs-z}
+        \end{equation}
+        for a complex number $z = x+yi$.
+
+        \begin{align*}
+            \therefore |\frac{1-i}{2+1}| &= |\frac{1}{5}-\frac{3}{5}i| \\
+                        &= \sqrt{(\frac{1}{5})^{2}+(-\frac{3}{5})^{2}} \\
+                        &= \sqrt{\frac{2}{5}}
+        \end{align*}
+
+        \item We have that the conjugate of $z$ is defined as:
+        \begin{equation}
+            \bar{z} := x - yi \label{eq:z-bar}
+        \end{equation}
+        \begin{align*}
+            \therefore (1-2i)\overline{(1-i)} &= (1-2i)(1+i) \\
+                            &= (1+2) + i(1-2) \\
+                            &= 3 - i,
+        \end{align*} which gives:
+        \begin{align*}
+            |(1-2i)\overline{(1-i)}| &= \sqrt{3^{2}+1^{2}} \\
+                    &= \sqrt{10}
+        \end{align*}
+
+        \item To convert a complex number from its rectangular to polar form:
+        \begin{equation}
+            z := |z|e^{i\theta},    \label{eq:z-polar}
+        \end{equation}
+        \begin{equation}
+            \theta := \text{arg}(z) := \arctan(\frac{y}{x})    \label{eq:argz} 
+        \end{equation}
+
+        \begin{align*}
+            \therefore (1-i)^{2021} 
+                    &= [(\sqrt{1^{2}+1^{2}})e^{i(\arctan(\frac{-1}{1}))}]^{2021} \\
+                    &= (\sqrt{2}e^{\frac{\pi}{4}i})^{2021} \\
+                    &= (\sqrt{2})^{2021}e^{\frac{2021\pi}{4}i},
+        \end{align*}
+
+        \begin{align*}
+            i^{-2021} &= (0 + i) ^{-2021} \\
+                    &= e^{-\frac{2021\pi}{2}i}
+        \end{align*}
+
+        We also have that, for two complex numbers $z$, $w$:
+        \begin{equation}
+            |zw| := |z||w| \label{eq:zw-abs} 
+        \end{equation}
+
+        \begin{align*}
+            \therefore |\frac{(1-i)^{2021}}{i^{2021}}| 
+                    &= |(1-i)^{2021}(i)^{-2021}| \\
+                    &= |(1-i)^{2021}||(i)^{-2021}| \\
+                    &= (\sqrt{2})^{2021}(1) \\
+                    &= (\sqrt{2})^{2021}
+        \end{align*}
+
+        \item As $\frac{\pi}{2}$ has no imaginary part, it exists as only a point
+        on the real axis:
+        \begin{align*}
+            \arg({\frac{\pi}{2}})=\text{Arg}(\frac{\pi}{2})=0
+        \end{align*}
+
+        \item Let $\tan(x) = -\frac{1}{\sqrt{3}}$. We have that 
+        $\arctan(\frac{1}{\sqrt{3}}) = \frac{\pi}{6}$, and therefore 
+        $x=\frac{5\pi}{6},\frac{11\pi}{6}, \forall x \in [0, 2\pi)$. 
+
+        \begin{align*}
+            \Rightarrow \arg(\sqrt{3}-i) &= \frac{5\pi}{6},\frac{11\pi}{6} \\
+            \text{Arg}(\sqrt{3}-i) &= \frac{5\pi}{6}, -\frac{\pi}{6}
+        \end{align*}
+        \end{enumerate}
+
+        \item For this problem, let $z=x+yi$, and $\zeta=a+bi$:
+        \begin{enumerate}[i)]
+            \item $|z-\zeta|=2$ describes the set of points which are at a distance
+            of 2 units from the point $\zeta$, i.e. the points that lie
+            on a circle centered about $\zeta$ of radius 2, as shown in 
+            \autoref{fig:q4a}.
+            \begin{figure}[!h]
+                \centering
+                \incfig{4a}
+                \caption{}
+                \label{fig:q4a}
+            \end{figure}
+
+            \item 
+            We have that:
+            \begin{align*}
+                z^{-1} &= \frac{x-yi}{x^{2}+y^{2}}, \text{ and that:} \\
+                \bar{z} &= x-yi
+            \end{align*}
+            Combining the two, we have:
+            \begin{align*}
+                \frac{x-yi}{x^{2}+y^{2}} &= x-yi \\
+                x^{2}+y^{2} &= 1 \\
+                \Rightarrow |z|^{2} &= 1 \\
+                \Rightarrow |z| &= 1
+            \end{align*} which can be interpreted geometrically as the set of points that lie on the unit
+            circle centered about the origin in the complex plane, as shown in \autoref{fig:q4b}.
+            \begin{figure}[!h]
+                \centering
+                \incfig{4b}
+                \caption{}
+                \label{fig:q4b}
+            \end{figure}
+
+            \item 
+            $\Re(z) = \frac{1}{2}$ geometrically describes the set of points that lie on
+            the vertical line on the point $\frac{1}{2}$ in the complex plane, as shown in 
+            \autoref{fig:q4c}. \\
+            \begin{figure}[!h]
+                \centering
+                \incfig{4c}
+                \caption{}
+                \label{fig:q4c}
+            \end{figure}
+
+            \item 
+            \begin{align*}
+                \Im(z) - 2\Re(z) &\leq 3 \\
+                y - 2x &\leq 3 \\
+                y &\leq 2x + 3
+            \end{align*}
+            This set of points is geometrically described by the shaded region in
+            \autoref{fig:q4d}. \\
+            \begin{figure}[!h]
+                \centering
+                \incfig{4d}
+                \caption{}
+                \label{fig:q4d}
+            \end{figure}
+
+            \item 
+            We have that:
+            \begin{align*}
+                z\bar{z} &= (x+yi)(x-yi) \\
+                    &= (x^{2}+y^{2})-i(-xy+xy) \\
+                    &= x^{2}+y^{2} \\
+            \therefore z\bar{z} \geq 1 &\equiv x^{2}+y^{2} \geq 1, \\
+            \end{align*} which geometrically describes the set of points that lie
+            on or outside the unit circle centered about the origin, as shown in 
+            \autoref{fig:q4e}.
+            \begin{figure}[!h]
+                \centering
+                \incfig{4e}
+                \caption{}
+                \label{fig:q4e}
+            \end{figure}
+
+            \item The 5th roots of unity are:
+            \begin{equation*}
+                \{1, e^{\frac{2\pi}{5}i}, e^{\frac{4\pi}{5}i}, 
+                e^{\frac{6\pi}{5}i}, e^{\frac{8\pi}{5}i} \}
+            \end{equation*} Geometrically, this describes a set of 5 points on the unit
+            circle, as shown in \autoref{fig:q4f}.\\
+            \begin{figure}[!h]
+                \centering
+                \incfig{4f}
+                \caption{}
+                \label{fig:q4f}
+            \end{figure}
+        \end{enumerate}
+        
+        \item 
+        \begin{enumerate}[i)]
+            \item Let $z:=x+yi$, then Re$(z)=x$, Im$(z)=y$:
+            \begin{align*}
+                iz &= (0+i)(x+yi) \\
+                &= (0-y) + i(0+x) \\
+                &= -y + xi
+            \end{align*}
+            We therefore have Re$(iz)=-y=-$Im$(z)$, and that Im$(iz)=x=$Re$(z)$. (Q.E.D)
+        
+            \item We can express $i$ as $e^{\frac{\pi}{2}i}$ in the polar form. Therefore:
+            \begin{align*}
+                i^{4n} &= (e^{\frac{\pi}{2}})^{4n} \\
+                    &= e^{2\pi ni} = 1,
+            \end{align*}
+            as all roots of 1 have the form $e^{2\pi ni}, \, \forall n \in \mathbb{N}$. We 
+            also have that:
+            \begin{gather*}
+                i^{2} = -1 \\
+                i^{3} = i(i^{2}) = -i
+            \end{gather*}
+            \begin{align*}
+                \therefore i^{4n} &= 1 \\
+                i^{4n+1} &= i^{4n}(i) = (1)(i) = i \\
+                i^{4n+2} &= i^{4n}(i^{2}) = (1)(-1) = -1 \\
+                i^{4n+3} &= i^{4n}(i^{3}) = 1 (-i) = -i     \text{ (Q.E.D.)}
+            \end{align*}
+
+            Let $n=505$. Then, $i^{2021} = i^{4(505)+1} \equiv i^{4n+1}$, which gives:
+            \begin{equation*}
+                i^{2021} = i, \text{ and}
+            \end{equation*}
+            \begin{equation*}
+                i^{-2021} = \frac{1}{i} = \frac{-i}{1} = -i
+            \end{equation*}
+
+            \item By substituting $z_{1}=i$ into the equation:
+            \begin{align*}
+                (i-1)z_{1}^{2}-4z_{1}-1+5i &= (i-1)(i)^{2}-4(i)-1+5i \\
+                                        &= -(i-1) - 4i - 1 + 5i \\
+                                        &= -i+1 -1 + i \\
+                                        &= 0,
+            \end{align*}
+            and by substituting $z_{2}=-2-3i$ into the equation:
+            \begin{align*}
+                (i-1)z_{2}^{2}-4z_{2}-1+5i &= (i-1)(-2-3i)^{2}-4(-2-3i)-1+5i \\
+                        &= (-1+i)(-2-3i)(-2-3i) + 8 + 12i - 1 + 5i \\
+                        &= [(2+3)+(3-2)i](-2-3i) + 7 + 17i \\
+                        &= (5+i)(-2-3i)+7+17i \\
+                        &= (-10+3) + (-15-2)i + 7 + 17i \\
+                        &= -7 - 17i + 7 + 17i \\
+                        &= 0,
+            \end{align*} it is verified that $z_{1}=i, \, z_{2}=-2-3i$ are solutions to 
+            the equation 
+            \begin{equation*}
+                (i-1)z^{2}-4z-1+5i=0 
+            \end{equation*}
+        \end{enumerate} 
+
+        \item For $D\gg d$, $\theta' \approx \theta$, and the lines $r_{+}(x), \, 
+        r_{-}(x), \, r$ are approximately parallel. If we zoom into this portion of the
+        figure (as seen in \autoref{fig:q5a}), we can observe that:
+        \begin{align*}
+            r_{+} &= r - \frac{1}{2}\sin(\theta) \\
+            r_{-} &= r + \frac{1}{2}\sin(\theta) \\
+        \end{align*} 
+        Therefore:
+        \begin{align*}
+            u(x,t) &= u_{+}(x,t) + u_{-}(x,t) \\
+            &= \frac{A}{r}(e^{i(kr_{+}(x)-\omega t)} + e^{i(kr_{-}(x)-\omega t)}) \\
+            &= \frac{A}{r}(e^{-i\omega t})(e^{i(kr_{+}(x))} + e^{i(kr_{-}(x))}),  \text{ where}\\
+            e^{i(kr_{+}(x))} + e^{i(kr_{-}(x))} &= e^{ik(r-\frac{1}{2}\sin(\theta))} 
+                    + e^{ik(r+\frac{1}{2}\sin(\theta))} \\
+                    &= e^{ikr-\frac{1}{2}ik\sin(\theta)} 
+                    + e^{ikr+\frac{1}{2}ik\sin(\theta)} \\
+                    &= e^{ikr}(e^{-\frac{1}{2}ik\sin(\theta)}+e^{\frac{1}{2}ik\sin(\theta)}) \\
+                    &= [2cos(\frac{1}{2}k\sin(\theta))]e^{ikr}
+        \end{align*}
+        This gives the overall expression:
+        \begin{equation*}
+            u(x,t) = \frac{2A}{r}[cos(\frac{1}{2}k\sin(\theta))]
+                    (e^{i(kr-\omega t)}),
+        \end{equation*}from which we can extract $|u(x,t)|=\frac{A}{r}[2cos(\frac{1}{2}k\sin(\theta))]$, 
+        as per \autoref{eq:z-polar}. Then, we have:
+        \begin{align*}
+            I(x,t) &= |u(x,t)|^{2}\\
+                &= (\frac{2A}{r}[cos(\frac{1}{2}k\sin(\theta))])^{2} \\
+                &= \frac{4A^{2}}{r^{2}}\cos^{2}(\frac{1}{2}k\sin(\theta)),
+        \end{align*} where $r = \frac{D}{\cos(\theta)}$, as shown in \autoref{fig:q5}. This gives:
+        \begin{align*}
+            I(x,t) &= 4A^{2}(\frac{\cos(\theta)}{D})^{2}\cos^{2}(\frac{1}{2}k\sin(\theta)) \\
+                &= \frac{4A^{2}}{D^{2}}\cos^{2}(\theta)\cos^{2}(\frac{1}{2}k\sin(\theta)) \\
+                &= \frac{4A^{2}}{D^{2}}\cos^{2}(\theta)\cos^{2}(\frac{1}{2}(\frac{2\pi}{\lambda})
+                \sin(\theta)), \text{ as it is given that } \lambda = \frac{2\pi}{k} \\
+                &= \frac{4A^{2}}{D^{2}}\cos^{2}(\theta)\cos^{2}\biggr(\frac{\pi}{\lambda}
+                \sin(\theta)\biggr)
+        \end{align*}
+        \begin{figure}[!h]
+            \centering
+            \import{./}{q5diagram.pdf_tex}
+            \caption{This is a vector diagram, so it can be magnified!}
+            \label{fig:q5}
+        \end{figure}
+        
+        
+        \begin{figure}[!th]
+            \centering
+            \import{./}{5a.pdf_tex}
+            \caption{Zoomed into the region near the slit. This is a vector diagram, so it can be magnified too!}
+            \label{fig:q5a}
+        \end{figure}
+
+        For small values of $\theta$, we can make the approximation:
+        \begin{equation*}
+            \tan(\theta) \approx \sin(\theta) \approx \theta
+        \end{equation*}
+
+        We have that $\tan{\theta}=\frac{x}{D}$, which can be approximated to be $\theta$ from above, as $\frac{x}{D}$
+        is small. Together with the fact that lines of maximal intensity occur when the path difference between the two waves (i.e. $l$ in \autoref{fig:q5}) 
+        is an integer multiple of the light's wavelength, we can derive:
+        \begin{align*}
+            d\sin(\theta) \approx d\theta &\approx n\lambda \\
+            \lambda &\approx \frac{d\theta}{n} \\
+                 &\approx \frac{dx}{Dn} \\
+            x &\approx \frac{Dn}{d}\lambda \\
+            \therefore \bar{\lambda} &\approx x_{n+1}-x_{n} \\
+            &\approx \frac{D(n+1)}{d}\lambda - \frac{Dn}{d}\lambda \\
+                                    &\approx \frac{D\lambda}{d} (n+1-n) \\
+                                    &\approx \frac{D}{d}\lambda \text{ (Q.E.D.)}
+        \end{align*}
+
+
+
+
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,252 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\title{Assignment 4}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 4}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    % \section*{Problem 1}
+    % \begin{enumerate}[(i)]
+    %     \item 
+    %     \item 
+    %     \item 
+    % \end{enumerate}
+
+    \section*{Problem 2}
+    We assume the ice block has infinite length and lies on the complex plane as shown in \autoref{fig:2}.
+    \begin{figure}[!h]
+        \centering
+        \incfig{2}
+        \caption{}
+        \label{fig:2}
+    \end{figure} \\
+    Let $\phi(x,y) = A\ln|z| + iB\Arg(z)$. Applying the 
+    boundary conditions at $\phi=T$ and $\phi=0$, gives:
+    \begin{align*}
+        &\begin{cases}
+            A\ln(\frac{1}{2}\sigma) + iB\frac{\pi}{2} = T \\
+            A\ln(\frac{1}{2}\sigma) - iB\frac{\pi}{2} = 0
+        \end{cases} \\
+        &\Rightarrow
+        \begin{cases}
+            A = \frac{T}{2\ln(\frac{1}{2}\sigma)} \\
+            B = -\frac{T}{\pi}i
+        \end{cases} \\
+    \end{align*}
+    This gives the temperature distribution:
+    \begin{equation*}
+        \phi(z) = \frac{T}{2\ln(\frac{1}{2}\sigma)}\ln|z| + \frac{T}{\pi}\Arg(z)
+    \end{equation*}
+
+    % We assume the ice block is of infinite length, and the bottom layer (i.e. the face of the ice 
+    % that faces the water) lies on the line $\{z\in \mathbb{C} \, : \Im(z) = 0\}$, and the top layer 
+    % (i.e. the face of the ice that faces the air) lines on the line 
+    % $\{z\in \mathbb{C} \, : \, \Im(z) = \sigma\}$. We also assume that the temperature distribution
+    % is uniform throughout the ice layer.\\
+    
+    % \par We also know that the temperature distribution
+    % of this ice of uniform thickness, $T(x,y) = u(x,y) + iv(x,y)$, will be a harmonic function, i.e.
+    % $\Delta u = \Delta v = 0$. For $u(x,y)$:
+    % \begin{equation*}
+    %     \Delta u = \partial^{2}_{xx} + \partial^{2}_{yy} = 0 
+    % \end{equation*}
+    % Taking the antiderivative of $\partial^{2}_{xx}$ with respect to $x$ twice:
+    % \begin{align*}
+    %     \partial_{x} &= 0 + A(y) \\
+    %     u &= A(y)x + B(y) \\
+    % \end{align*}
+    % Similarly:
+    % \begin{align*}
+    %     \partial_{y} &= 0 + C(x) \\
+    %     u &= C(x)y + D(x) \\
+    %     &= A(y)x + B(y) \\
+    %     &\Rightarrow C(x) = x, \, A(y) = y, \, B(y) = D(x) = c, \, c \in \mathbb{R} \\
+    %     \Rightarrow u &= xy + c
+    % \end{align*}
+    % As $T(x,y)$ is harmonic, then $T\in H(\Omega)$, which means that the Cauchy-Riemann equations 
+    % are satisfied, giving $\partial_{y} \, v(x,y) = \partial_{x} \, u(x,y) = y$. Taking the antiderivative
+    % with respect to y:
+    % \begin{equation}
+    %     v(x,y) = \frac{1}{2}y^{2} + P(x) \label{eq:1}
+    % \end{equation}
+    % The 2nd Cauchy-Riemann equation asserts that $\partial_{x} \, v(x,y) = -\partial_{y} \, u(x,y) = 
+    % -x$. Taking the partial of \autoref{eq:1} with respect to $x$:
+    % \begin{align*}
+    %     P'(x) &= -x \\
+    %     \Rightarrow P(x) &= -\frac{1}{2}x^{2} + d, \, d\in \mathbb{R}
+    % \end{align*}
+    % This gives:
+    % \begin{equation*}
+    %     v(x,y) = \frac{1}{2}y^{2} - \frac{1}{2}x^{2} + d,
+    % \end{equation*} and also that
+    % \begin{equation*}
+    %     T(x,y) = (xy + c) + i(\frac{1}{2}y^{2} - \frac{1}{2}x^{2} + d)
+    % \end{equation*}
+
+    % Based on the assumption of a uniform temperature distribution, we can plug in the boundary conditions
+    % at $x=0$. This gives us:
+    % \begin{align*}
+    %     T(0,0) &= c+di = 0 \\
+    %     T(0,\sigma) &= \frac{1}{2}\sigma^{2} + c + di = T \\
+    %     \Rightarrow&
+    %     \begin{cases}
+    %         c + di = 0 \\
+    %         \frac{1}{2}\sigma^{2} + c + di = T \\
+    %     \end{cases} \\
+    %     \Rightarrow&
+    %     \begin{cases}
+    %        123
+    %     \end{cases} \\
+    % \end{align*}
+
+
+
+    \section*{Problem 3}
+    \begin{enumerate}[(i)]
+        \item $\Log(\frac{z-1}{z-2})$ has a branch cut on:
+        \[
+            \begin{cases}
+                \Im(\frac{z-1}{z-2}) = 0 \\
+                \Re(\frac{z-1}{z-2}) \leq 0
+            \end{cases}    
+        \]
+        \begin{align*}
+            \Rightarrow \frac{z-1}{z-2} &= ((x-1)+yi)((x-2)+yi)^{-1} \\
+                &= \frac{((x-1)+yi)((x-2)-yi)}{(x-2)^{2}+y^{2}} \\
+                &= \frac{(x-1)(x-2) - iy(x-1) + iy(x-2) + y^{2}}{(x-2)^{2}+y^{2}} \\
+                &= \frac{x^{2}-3x+2+y^{2}}{(x-2)^{2}+y^{2}} + iy\frac{(x-1)-(x-2)}{(x-2)^{2}+y^{2}} \\
+                &= \frac{x^{2}-3x+2+y^{2}}{(x-2)^{2}+y^{2}} + i\frac{y}{(x-2)^{2}+y^{2}} \\
+        \end{align*}
+        This gives the system of equations:
+          \begin{align*}
+              &\begin{cases}
+                y = 0 \\
+                x^{2}-3x+2+y^{2} \leq 0
+              \end{cases} \\
+              &\Rightarrow x^{2}-3x+2 \leq 0 \\
+              &(x-1)(x-2) \leq 0 \\
+              & 1 \leq x \leq 2
+          \end{align*} 
+        $\therefore \Omega = \mathbb{C} \, \backslash \, \{\Re(z) \in [1,2]\}$
+        
+        \item We can write:
+        \begin{align*}
+            (z^{2}-1)^{\frac{1}{2}} &= (-1)^{\frac{1}{2}}(1-z^{2})^{\frac{1}{2}} \\
+                &= i(1-z^{2})^{\frac{1}{2}} \\
+                &= ie^{\frac{1}{2}\Log(1-z^{2})},
+        \end{align*}which has a branch cut on the set:
+        \[
+          \begin{cases}
+              \Im(1-z^{2}) = 0 \\
+              \Re(1-z^{2}) \leq 0
+          \end{cases}  
+        \]
+        We have that:
+        \begin{align*}
+            1-z^{2} &= 1 - (x+yi)^{2} \\
+                &= 1 - (x^{2}+2xyi-y^{2}) \\
+                &= 1 - x^{2} + y^{2} - 2xyi \\
+                &\Rightarrow \begin{cases}
+                    -2xy = 0 \\
+                    1 - x^{2} + y^{2} \leq 0 \\
+                \end{cases},
+        \end{align*}which indicates $y=0$ or $x=0$. If $x=0$:
+        \begin{align*}
+            1 + y^{2} &\leq 0 \\
+            y^{2} &\leq -1,
+        \end{align*} which cannot be true, as $y\in \mathbb{R}$. Therefore, $y$ must be 0:
+        \begin{align*}
+            1-x^{2} &\leq 0 \\
+            x^{2} &\geq 1 \\
+            &\Rightarrow x \leq -1, \, x \geq 1,
+        \end{align*}which lies on the beyond the unit circle centered about 0 in $\mathbb{C}$. Therefore,
+        any branch of $(z^{2}-1)^{\frac{1}{2}}$ within the disc $B_{1}(0)$ is holomorphic in $B_{1}(0)$,
+        e.g. the branch $\{\Im(z)\in (-1, 1)\}$.
+    \end{enumerate}
+
+    \section*{Problem 4}
+    \begin{enumerate}[(i)]
+        \item The contour can be parametrized as $\alpha = \alpha_{1} + \alpha_{2} + \alpha_{3} + \alpha_{4}
+        + \alpha_{5}$, where the initial point of $\alpha_{j}$ is the end-point of $\alpha_{j-1}$:
+        \[
+          \begin{cases}
+              \alpha_{1} = re^{i(\pi-t)}, & t = [0, \pi], \\
+              \alpha_{2} = t, & t = [r, R], \\
+              \alpha_{3} = Re^{it}, & t = [0, \pi], \\
+              \alpha_{4} = t, & t = [-R,-r], \\
+          \end{cases}  
+        \]
+
+        \item In polar coordinates, we have that $x=r\cos(\theta)$ and $y=r\sin(\theta)$:
+        \begin{gather*}
+            \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} = 1 
+                \Leftrightarrow \frac{r^{2}\cos^{2}(\theta)}{a^{2}} + 
+                    \frac{r^{2}\sin^{2}(\theta)}{b^{2}} = 1 \\
+                \frac{a^{2}r^{2}\sin^{2}(\theta) + b^{2}r^{2}\cos^{2}(\theta)}{a^{2}b^{2}} = 1 \\
+                a^{2}r^{2}\sin^{2}(\theta) + b^{2}r^{2}\cos^{2}(\theta) = a^{2}b^{2} \\
+                r^{2}(a^{2}\sin^{2}(\theta) + b^{2}\cos^{2}(\theta)) = a^{2}b^{2} \\
+                r^{2} = \frac{a^{2}b^{2}}{a^{2}\sin^{2}(\theta) + b^{2}\cos^{2}(\theta)} \\
+                r = \sqrt{\frac{a^{2}b^{2}}{a^{2}\sin^{2}(\theta) + b^{2}\cos^{2}(\theta)}} \\
+        \end{gather*}
+        The contour can therefore be parametrized as:
+        \begin{equation*}
+            \alpha(t) = \frac{ab}{\sqrt{a^{2}\sin^{2}(t) + b^{2}\cos^{2}(t)}}, \, t\in[0,2\pi]
+        \end{equation*}
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="180.651mm"
+   height="117.87588mm"
+   viewBox="0 0 180.651 117.87588"
+   version="1.1"
+   id="svg3343"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   sodipodi:docname="4c.svg">
+  <defs
+     id="defs3337" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.66"
+     inkscape:cx="316.66667"
+     inkscape:cy="348.80518"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1252"
+     inkscape:window-height="784"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3340">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-22.048611,-25.640535)">
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.187911px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 34.017857,34.017857 V 138.87761"
+       id="path3345" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 22.048611,87.392676 H 184.00568"
+       id="path3347" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="172.38004"
+       y="82.982956"
+       id="text3351"><tspan
+         sodipodi:role="line"
+         id="tspan3349"
+         x="172.38004"
+         y="82.982956"
+         style="stroke-width:0.264583">$\text{Re}$</tspan><tspan
+         sodipodi:role="line"
+         x="172.38004"
+         y="90.038506"
+         style="stroke-width:0.264583"
+         id="tspan3353" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="23.570223"
+       y="29.873865"
+       id="text3351-6"><tspan
+         sodipodi:role="line"
+         id="tspan3349-0"
+         x="23.570223"
+         y="29.873865"
+         style="stroke-width:0.264583">$\text{Im}$</tspan><tspan
+         sodipodi:role="line"
+         x="23.570223"
+         y="36.929417"
+         style="stroke-width:0.264583"
+         id="tspan3353-4" /></text>
+    <path
+       style="fill:#0000ff;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 97.013889,34.075126 V 143.51641"
+       id="path3383" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="85.388252"
+       y="93.405937"
+       id="text3387"><tspan
+         sodipodi:role="line"
+         id="tspan3385"
+         x="85.388252"
+         y="93.405937"
+         style="stroke-width:0.264583">$\frac{1}{2}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="99.419189"
+       y="43.696339"
+       id="text3391"><tspan
+         sodipodi:role="line"
+         id="tspan3389"
+         x="99.419189"
+         y="43.696339"
+         style="stroke-width:0.264583">$z$</tspan></text>
+  </g>
+</svg>

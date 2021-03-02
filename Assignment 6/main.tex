@@ -1,0 +1,265 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\makeatletter
+\let\ams@underbrace=\underbrace
+\def\underbrace{\kernel@ifnextchar[{\underbrace@}{\underbrace@[l]}}% default value: l
+\def\underbrace@[#1]#2_#3{%
+  \ifx#1c\relax
+    \let\ubr@align\centering%
+  \else
+    \ifx#1l\relax
+      \let\ubr@align\raggedright%
+    \else
+      \ifx#1r\relax
+        \let\ubr@align\raggedleft%
+      \else
+        \ifx#1f\relax
+          \let\ubr@align\relax%
+        \else
+          \message{`#1' isn't a valid alignment specification for the underbrace command}%
+        \fi
+      \fi
+    \fi
+  \fi
+  \setbox0=\hbox{$\displaystyle#2$}%
+  \ams@underbrace{#2}_{\parbox[t]{\the\wd0}{\ubr@align#3}}%
+}
+\let\ubr@align\relax
+\makeatother
+
+\title{Assignment 6}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 6}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    The denominator can be expressed as $z^{2}-z(1+i)=(z)(z-(1+i))$, i.e. there are two singularities at 
+    $z=0$, and $z=1+i$.
+
+    \begin{enumerate}[i)]
+        \item $\alpha(t) = B_{2}(1)$. We can partition $\alpha(t)$ into $\alpha_{1}(t)$, which contains
+        the singularity $z=0$, and $\alpha_{2}(t)$, which contains the singularity $z=1+i$.
+        \begin{align*}
+            \oint_{\alpha} \frac{z-i+1}{z^{2}-z(1+i)} \, dz &= \oint_{\alpha_{1}} \frac{z-i+1}{z^{2}-z(1+i)} \, dz +
+                    \oint_{\alpha_{2}} \frac{z-i+1}{z^{2}-z(1+i)} \, dz \\
+                &= \oint_{\alpha_{1}} \frac{\frac{z-i+1}{z}}{z-(1+i)} \, dz +
+                    \oint_{\alpha_{2}} \frac{\frac{z-i+1}{z-(1+i)}}{z} \, dz \\
+        \end{align*}
+        For $\oint_{\alpha_{1}} \frac{(z-i+1)/z}{z-(1+i)} \, dz$, let $f_{1}(z)=\frac{z-i+1}{z}$, 
+        and $w_{1}=1+i$. Cauchy's Integral Theorem gives:
+        \begin{align}
+            \oint_{\alpha_{1}} \frac{\frac{z-i+1}{z}}{z-(1+i)} \, dz &= 2\pi i \, f_{1}(1+i) \nonumber\\
+                &= 2\pi i (\frac{(1+i)-i+1}{1+i}) \nonumber \\
+                &= 2\pi i (\frac{2}{1+i}) \nonumber\\
+                &= \frac{4\pi i}{1+i} \label{eq:1.a1}
+        \end{align}
+        For $\oint_{\alpha_{2}} \frac{(z-i+1)/(z-(1+i))}{z} \, dz$, let $f_{2}(z)=\frac{z-i+1}{z-(1+i)}$, and
+        $w_{2}=0$. Similarly, we have:
+        \begin{align*}
+            \oint_{\alpha_{2}} \frac{\frac{z-i+1}{z-(1+i)}}{z} \, dz &= 2\pi i \, f_{2}(0) \\
+                &= 2\pi i (\frac{1-i}{-(1+i)}) \\
+                &= \frac{2\pi i(i-1)}{1+i} \\
+                &= \frac{2\pi (-1-i)}{1+i} \\
+                &= \frac{-2\pi\cancel{(1+i)}}{\cancel{(1+i)}} \\
+                &= -2\pi
+        \end{align*}
+        \begin{equation*}
+            \therefore \oint_{\alpha} \frac{z-i+1}{z^{2}-z(1+i)} \, dz = -2\pi + \frac{4\pi i}{1+i}
+        \end{equation*}
+        
+        \item Let $\beta=B_{1}(1+i)$. $\beta$ only contains the singularity $z=1+i$, so we can use result
+        \eqref{eq:1.a1} above:
+        \begin{equation*}
+            \oint_{\beta} \frac{z-i+1}{z^{2}-z(1+i)} \, dz = \oint_{\alpha_{1}} \frac{\frac{z-i+1}{z}}{z-(1+i)} \, dz = \frac{4\pi i}{1+i} 
+        \end{equation*}
+        
+        \item Let $\gamma=B_{\frac{1}{2}}(2)$. $\gamma$ does not contain either of the singularity points, so by Cauchy's Theorem:
+        \begin{equation*}
+            \oint_{\gamma} \frac{z-i+1}{z^{2}-z(1+i)} \, dz = 0
+        \end{equation*}
+    \end{enumerate}
+
+    \section*{Problem 2}
+    Let the countour be $\alpha_{R}$:
+    \[
+        \begin{cases}
+            c_{\epsilon}(t) = \epsilon e^{i(\pi-t)}, & t\in[0,\pi], \\
+            c_{1}(t) = t, & t\in[\epsilon,R], \\
+            c_{R}(t) = Re^{it}, & t\in[0, \pi], \\
+            c_{2}(t) = t, & t\in[-R, -\epsilon], \\
+        \end{cases}    \Rightarrow
+        \begin{cases}
+            c'_{\epsilon}(t) = -i\epsilon e^{i(\pi-t)}, & t\in[0,\pi], \\
+            c'_{1}(t) = 1, & t\in[\epsilon,R], \\
+            c'_{R}(t) = iRe^{it}, & t\in[0, \pi], \\
+            c'_{2}(t) = 1, & t\in[-R, -\epsilon], \\
+        \end{cases}    
+    \]
+    As the contour is closed, by Cauchy's Theorem:
+    \begin{equation}
+        \oint_{\alpha_{R}} f(z) \, dz = \oint_{\alpha_{R}} \frac{e^{iz}}{z} \, dz = 0, \label{eq:2}
+    \end{equation}
+    where $f(z)$ can be expressed as:
+    \begin{align*}
+        f(z) &= \frac{e^{-y}e^{ix}}{z} \\
+            &= \frac{e^{-y}(\cos(x)+i\sin(x))}{z} \\
+            &= \frac{e^{-y}}{z}(\cos(x) + i\sin(x)) \\
+    \end{align*}
+    where $x=\Re(z), \, y=\Im(z)$. Similarly with the segments $c_{\epsilon}$ and $c_{R}$:
+    \begin{align*}
+        c_{\epsilon}(t) &= \epsilon e^{i\pi}e^{-it} \\
+            &= -\epsilon(\cos(t) - i\sin(t)) \\
+            &= -\epsilon\cos(t) + i\epsilon\sin(t), 
+    \end{align*}
+    \begin{align*}
+        c_{R}(t) &= R(\cos(t)+i\sin(t)) \\
+            &= R\cos(t) + iR\sin(t), 
+    \end{align*}
+
+    For the segment $c_{\epsilon}$:
+    \begin{align}
+        \int_{c_{\epsilon}} f(z) \, dz &= \int_{0}^{\pi}(\frac{e^{-\epsilon\sin(t)}}
+            {\cancel{\epsilon e^{i(\pi-t)}}})(\cos(-\epsilon\cos(t)) + i\sin(-\epsilon\cos(t)))
+            (-i\cancel{\epsilon e^{i(\pi-t)}}) \, dt \nonumber\\
+            &= -i\int_{0}^{\pi}e^{-\epsilon\sin(t)}e^{-i\epsilon\cos(t)} \, dt \nonumber \\
+            &= -i\int_{0}^{\pi}e^{-\epsilon(\sin(t)-i\cos(t))} \, dt \label{eq:2.ce} 
+    \end{align}
+    For the segment $c_{1}$:
+    \begin{align}
+        \int_{c_{1}} f(z) \, dz &= \int_{\epsilon}^{R} \frac{e^{ix}}{x} \, dx \nonumber\\
+            &= \int_{\epsilon}^{R} \frac{\cos(x)}{x} + i\frac{\sin(x)}{x} \, dx \nonumber\\
+            &= \int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + i\int_{\epsilon}^{R} \frac{\sin(x)}{x} \, dx \label{eq:2.c1}
+    \end{align} 
+    For the segment $c_{R}$:
+    \begin{align}
+        \int_{c_{R}} f(z) \, dz &= \int_{0}^{\pi} (\frac{e^{R\sin(t)}}{\cancel{Re^{it}}})(\cos(R\cos(t)) + i\sin(R\cos(t)))(i\cancel{Re^{it}}) \, dt \nonumber\\
+            &= i\int_{0}^{\pi}e^{R\sin(t)}e^{iR\cos(t)} \, dt \nonumber\\
+            &= i\int_{0}^{\pi}e^{R(\sin(t)+i\cos(t))} \, dt \label{eq:2.cr} 
+    \end{align}
+    For the segment $c_{2}$:
+    \begin{align}
+        \int_{c_{2}} f(z) \, dz &= \int_{-R}^{-\epsilon} \frac{e^{ix}}{x} \, dx \nonumber\\
+            &= \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} + i\frac{\sin(x)}{x} \, dx \nonumber\\
+            &= \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx + i\int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx \label{eq:2.c2}
+    \end{align} 
+    For \eqref{eq:2.ce}, taking the limit as $\epsilon\to0$ gives:
+    \begin{align}
+        \lim_{\epsilon\to0} -i\int_{0}^{\pi}e^{-\epsilon(\sin(t)-i\cos(t))} \, dt &= -i\int_{0}^{\pi}e^{-0} \, dt \nonumber \\
+            &= -i\int_{0}^{\pi} 1 \, dt \nonumber\\
+            &= -\pi i \label{eq:2.limce}
+    \end{align}
+    Taking the limit of \eqref{eq:2.cr} as $R\to\infty$ gives:
+    \begin{equation}
+        \lim_{R\to\infty} i\int_{0}^{\pi}e^{R(\sin(t)+i\cos(t))} \, dt = 0 \label{eq:2.limcr}
+    \end{equation}
+    Taking the limit of \eqref{eq:2.c1}+\eqref{eq:2.c2} as $R\to\infty$ and $\epsilon\to0$ gives:
+    \begin{align}
+        &\lim_{R\to\infty}\lim_{\epsilon\to0} (\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + i\int_{\epsilon}^{R} \frac{\sin(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx + i\int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx) \nonumber\\
+        &= \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + i (\lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx)) \nonumber\\
+        &= \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx, \, \text{by Hint (a)} \label{2.limc1c2}
+    \end{align}
+    Combining \eqref{eq:2.limce}, \eqref{eq:2.limcr}, \eqref{2.limc1c2}, and substituting into \eqref{eq:2} then gives:
+    \begin{align*}
+        -\pi i + 0 + \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= 0 \\
+        \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \pi i
+    \end{align*}
+    Taking Im(LHS) = Re(RHS) gives:
+    \begin{align*}
+        2\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \pi \\
+        \int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \frac{\pi}{2} 
+    \end{align*} \qed
+    
+    \section*{Problem 3}
+    Let the countour $\gamma(t)$ be parametrized as follows:
+    \[
+        \begin{cases}
+            \gamma_{1}(t) = t, & t\in[0,R], \\
+            \gamma_{2}(t) = R(1+it), & t\in[0,a], \\
+            \gamma_{3}(t) = t(1 + ia), & t\in[0,R], \\
+        \end{cases}    \Rightarrow
+        \begin{cases}
+            \gamma_{1}'(t) = 1, \\
+            \gamma_{2}'(t) = Ri, \\
+            \gamma_{3}'(t) = (1+ia), \\
+        \end{cases}
+    \]
+    Let $f(z)=e^{-z^{2}}$. As $\gamma(t)$ is closed, by Cauchy's Theorem we have $\oint_{\gamma} f(z) \, dz = 0 $:
+    \begin{equation}
+        \Rightarrow \int_{0}^{R} e^{-t^{2}} \, dt + \int_{0}^{a} e^{-R^{2}(1+it)^{2}}(Ri) \, dt \, \underbrace[c]{-\int_{0}^{R} e^{-(t(1+ia)^{2})}(1+ia) \, dt}_{We subtract this term as the orientation is opposite of the parametrization above} = 0 \label{eq:3.1}
+    \end{equation}
+    Taking the limit of the left hand side of \eqref{eq:3.1} as $R\to\infty$ gives:
+    \begin{align*}
+        \int_{0}^{\infty} e^{-t^{2}} \, dt + \int_{0}^{a} e^{-\infty}(Ri) \, dt - \int_{0}^{\infty} e^{-(t(1+ia)^{2})}(1+ia) \, dt &= \frac{\sqrt{\pi}}{2} + 0 - (1+ia)\int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt
+    \end{align*}
+    Substituting this result back into \eqref{eq:3.1} gives:
+    \begin{align*}
+        \frac{\sqrt{\pi}}{2} - (1+ia)\int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt &= 0 \\
+        (1+ia)\int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt &= \frac{\sqrt{\pi}}{2} \\
+        \int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt &= \frac{\sqrt{\pi}}{2(1+ia)} 
+    \end{align*} \qed \\
+    
+    \section*{Problem 4}
+    Since $f(z)=g(z)\, \forall z \in\alpha$, we have that $|f(z)-g(z)|=0$ on the curve $\alpha$. By the Maximum Modulus Principle, 
+    $|f(z)-g(z)|$ reaches its maximum on the boundary of the bounded domain (in this case $\alpha$). Therefore, there is no point in the
+    interior of $\alpha$ such that $|f(z)-g(z)|>0$. As the modulus of any complex number cannot be negative, this means that 
+    \begin{equation*}
+        |f(z)-g(z)|=0 \Rightarrow f(z)=g(z), \, \forall z\in \text{int}(\alpha)
+    \end{equation*}\qed
+    
+\end{document}  

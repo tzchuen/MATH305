@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="122.94398mm"
+   height="60.803814mm"
+   viewBox="0 0 122.944 60.803813"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   sodipodi:docname="2.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="205.04839"
+     inkscape:cy="147.16214"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="956"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.353177,-95.281585)">
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="82.497673"
+       y="131.44312"
+       id="text48-0"><tspan
+         sodipodi:role="line"
+         id="tspan46-3"
+         x="82.497673"
+         y="131.44312"
+         style="font-size:3.52778px;stroke-width:0.264583">$\frac{1}{2}\sigma$</tspan></text>
+    <path
+       style="fill:none;stroke:#00ffff;stroke-width:0.255186px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 38.353177,111.05049 H 161.29716"
+       id="path14" />
+    <path
+       style="fill:none;stroke:#00ffff;stroke-width:0.254492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 38.353177,142.45466 H 160.62899"
+       id="path18" />
+    <rect
+       style="opacity:0.9;fill:#00ffff;stroke:#00ffff;stroke-width:0.253538"
+       id="rect20"
+       width="120.94051"
+       height="31.41441"
+       x="39.559971"
+       y="111.04538" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.254281px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 40.758602,127.35393 H 158.7581"
+       id="path12" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.239996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 98.75609,95.281585 V 156.0854"
+       id="path10" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="95.01432"
+       y="130.56116"
+       id="text26"><tspan
+         sodipodi:role="line"
+         id="tspan24"
+         x="95.01432"
+         y="130.56116"
+         style="font-size:3.175px;stroke-width:0.264583">$0$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="92.608894"
+       y="109.71415"
+       id="text48"><tspan
+         sodipodi:role="line"
+         id="tspan46"
+         x="92.608894"
+         y="109.71415"
+         style="font-size:3.52778px;stroke-width:0.264583">$\frac{1}{2}\sigma$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="90.783035"
+       y="146.27657"
+       id="text48-2"><tspan
+         sodipodi:role="line"
+         id="tspan46-6"
+         x="90.783035"
+         y="146.27657"
+         style="font-size:3.52778px;stroke-width:0.264583">$-\frac{1}{2}\sigma$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="90.871643"
+       y="149.13638"
+       id="text100"><tspan
+         sodipodi:role="line"
+         id="tspan98"
+         x="90.871643"
+         y="149.13638"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="44.099472"
+       y="108.77869"
+       id="text104"><tspan
+         sodipodi:role="line"
+         id="tspan102"
+         x="44.099472"
+         y="108.77869"
+         style="stroke-width:0.264583">$\phi=T$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+       x="44.233105"
+       y="146.99823"
+       id="text108"><tspan
+         sodipodi:role="line"
+         id="tspan106"
+         x="44.233105"
+         y="146.99823"
+         style="stroke-width:0.264583">$\phi=0$</tspan></text>
+  </g>
+</svg>

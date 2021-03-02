@@ -1,0 +1,428 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.8\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\title{Assignment 3}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 3}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    \begin{enumerate}[(i)]
+        \item 
+        The determinate of the derivative of the vector field is given by:
+        \begin{equation*}
+            \det 
+            \begin{pmatrix}
+                \partial_{x} \, u(x,y) & \partial_{y} \, u(x,y) \\
+                \partial_{x} \, v(x,y) & \partial_{y} \, v(x,y)
+            \end{pmatrix} 
+            = (\partial_{x} \, u(x,y))(\partial_{y} \, v(x,y)) - (\partial_{y} \, u(x,y))(\partial_{x} \, v(x,y))
+        \end{equation*}
+        
+        As $f\in H(\Omega)$, the Cauchy-Riemann equations are satisfied:
+        \[
+          \begin{cases}
+            \partial_{x} \, u(x,y) = \partial_{y} \, v(x,y), \\
+            \partial_{x} \, v(x,y) = -\partial_{y} \, u(x,y), \\
+          \end{cases}  
+        \]
+        and $f'(z)$ is given by:
+        \begin{equation*}
+            f'(z) = \partial_{x} \, u(x,y) + i\partial_{x} \, v(x,y) = \partial_{y} \, v(x,y) - i\partial_{y} \, u(x,y)
+        \end{equation*}
+
+        This gives us:
+        \begin{align*}
+            |f'(z)|^{2} &= (f'(z))\overline{(f'(z))} \\
+                &= (\partial_{x} \, u(x,y) + i\partial_{x} \, v(x,y)) (\partial_{x} \, u(x,y) - i\partial_{x} \, v(x,y)) \\
+                &= (\partial_{x} \, u(x,y))(\partial_{x} \, u(x,y)) + (\partial_{x} \, v(x,y))(\partial_{x} \, v(x,y)) \\
+                &= (\partial_{x} \, u(x,y))(\partial_{y} \, v(x,y)) + (-\partial_{y} \, u(x,y))(\partial_{x} \, v(x,y)), \text{ from (CR)} \\
+                &= (\partial_{x} \, u(x,y))(\partial_{y} \, v(x,y)) - (\partial_{y} \, u(x,y))(\partial_{x} \, v(x,y)) \\
+                &= \det 
+                \begin{pmatrix}
+                    \partial_{x} \, u(x,y) & \partial_{y} \, u(x,y) \\
+                    \partial_{x} \, v(x,y) & \partial_{y} \, v(x,y)
+                \end{pmatrix} 
+        \end{align*}\qed \\
+        
+        \item We can express $f(z) = e^{2z}$ as:
+        \begin{align*}
+            f(z) &= (e^{z})^{2} \\
+                &= (e^{x+yi})^{2} \\
+                &= (e^{x}(\cos(y) + i\sin(y)))^{2} \\
+                &= e^{2x}(\cos(y) + i\sin(y))^{2} \\
+                &= e^{2x}(\cos^{2}(y) + 2i\cos(y)\sin(y) - \sin^{2}(y)) \\
+                &= e^{2x}(\cos(2y) + i\sin(2y)), \text{ using the double angle trigonometric indentities} \\
+                &= e^{2x}\cos(2y) + ie^{2x}\sin(2y) \\
+            \Leftrightarrow 
+            \begin{pmatrix}
+                u \\
+                v
+            \end{pmatrix}
+            &= 
+            \begin{pmatrix}
+                e^{2x}\cos(2y) \\
+                e^{2x}\sin(2y)
+            \end{pmatrix}, 
+        \end{align*}which gives us $u(x,y) = e^{2x}\cos(2y), \, v(x,y) = e^{2x}\sin(2y)$. The derivative of the
+        vector field is then:
+        \begin{align*}
+            \begin{pmatrix}
+                \partial_{x} \, u & \partial_{y} \, u \\
+                \partial_{x} \, v & \partial_{y} \, v                
+            \end{pmatrix} &=
+            \begin{pmatrix}
+                2e^{2x}\cos(2y) & -2e^{2x}\sin(2y) \\
+                2e^{2x}\sin(2y) & 2e^{2x}\cos(2y)
+            \end{pmatrix} \\
+            \therefore \det 
+            \begin{pmatrix}
+                \partial_{x} \, u & \partial_{y} \, u \\
+                \partial_{x} \, v & \partial_{y} \, v                
+            \end{pmatrix} 
+            &= (2e^{2x}\cos(2y))(2e^{2x}\cos(2y)) - (-2e^{2x}\sin(2y))(2e^{2x}\sin(2y)) \\
+            &= 4e^{4x}\cos^{2}(2y) + 4e^{4x}\sin^{2}(2y) \\
+            &= 4e^{4x}(\cos^{2}(2y) + \sin^{2}(2y)) \\
+            &= 4e^{4x}, \text{ from} \sin^{2}(\theta) + \cos^{2}(\theta) = 1
+        \end{align*}
+        Now, we evaluate $f'(z)$:
+        \begin{align*}
+            f'(z) &= 2e^{2x}\cos(2y) + i2e^{2x}\sin(2y) \\
+            \therefore |f'(z)|^{2} &= (2e^{2x}\cos(2y) + 
+                i2e^{2x}\sin(2y))\overline{(2e^{2x}\cos(2y) + i2e^{2x}\sin(2y))} \\
+                &= (2e^{2x}\cos(2y) + i2e^{2x}\sin(2y))(2e^{2x}\cos(2y) - i2e^{2x}\sin(2y)) \\
+                &= 4e^{4x}\cos^{2}(2y) + 4e^{4x}\sin^{2}(2y) \\
+                &= 4e^{4x} \\
+                &= \det 
+                \begin{pmatrix}
+                    \partial_{x} \, u & \partial_{y} \, u \\
+                    \partial_{x} \, v & \partial_{y} \, v                
+                \end{pmatrix}, 
+        \end{align*} which therefore shows that (i) is valid in the case $f(z) = e^{2z}$. \qed \\
+
+        \item The gradients of $u$ and $v$, $\nabla u$ and $\nabla v$, are:
+        \begin{equation*}
+            \nabla u = 
+            \begin{pmatrix}
+                \partial_{x} \, u(x,y) \\
+                \partial_{y} \, u(x,y)   
+            \end{pmatrix}, \, 
+            \nabla v = 
+            \begin{pmatrix}
+                \partial_{x} \, v(x,y) \\
+                \partial_{y} \, v(x,y)   
+            \end{pmatrix}
+        \end{equation*}
+        We now take the inner product of these two vectors:
+        \begin{align*}
+            \langle \nabla u, \nabla v \rangle &= \langle 
+            \begin{pmatrix}
+                \partial_{x} \, u(x,y) \\
+                \partial_{y} \, u(x,y)   
+            \end{pmatrix}, 
+            \begin{pmatrix}
+                \partial_{x} \, v(x,y) \\
+                \partial_{y} \, v(x,y)   
+            \end{pmatrix} 
+            \rangle \\
+            &= (\partial_{x} \, u(x,y))(\partial_{x} \, v(x,y)) 
+                + (\partial_{y} \, u(x,y))(\partial_{y} \, v(x,y)) \\
+        \end{align*}
+        Since $f\in H(\Omega)$, we can apply the Cauchy-Riemann equations:
+        \begin{align*}
+            \therefore \langle \nabla u, \nabla v \rangle 
+                &= (\partial_{x} \, u(x,y))(\partial_{x} \, v(x,y)) 
+                + (\partial_{y} \, u(x,y))(\partial_{y} \, v(x,y)) \\
+                &= (\partial_{x} \, u(x,y))(-\partial_{y} \, u(x,y)) 
+                + (\partial_{y} \, u(x,y))(\partial_{x} \, u(x,y)) \\
+                &= 0
+        \end{align*}
+        As the inner product of $\nabla u$ and $\nabla v$ is $0$, we can conclude that
+        $\nabla u$ and $\nabla v$ are everywhere orthogonal. \qed \\
+        
+        \item 
+        \begin{align*}
+            f(z) &= z^{2} \\
+                &= (x + yi)^{2} \\
+                &= x^{2} + 2xyi - y^{2} \\
+                &= (x^{2}-y^{2}) + (2xy)i \\
+                &\Rightarrow u(x,y) = x^{2}-y^{2}, \, v(x,y) = 2xy
+        \end{align*}
+        $\nabla u$ and $\nabla v$ are then:
+        \begin{equation*}
+            \nabla u = 
+            \begin{pmatrix}
+                2x \\
+                -2y   
+            \end{pmatrix}, \,
+            \nabla v = 
+            \begin{pmatrix}
+                2y \\
+                2x  
+            \end{pmatrix}
+        \end{equation*}
+        We then evaluate the inner product:
+        \begin{align*}
+            \langle \nabla u, \nabla v \rangle &= \langle 
+            \begin{pmatrix}
+                2x \\
+                -2y 
+            \end{pmatrix}, 
+            \begin{pmatrix}
+                2y \\
+                2x     
+            \end{pmatrix} 
+            \rangle \\
+            &= (2x)(2y) + (-2y)(2x) \\
+            &= 4xy - 4xy \\
+            &= 0,
+        \end{align*} which shows that $\nabla u$ and $\nabla v$ are orthogonal in the case of 
+        $f(z)=z^{2}$, which proves that (iii) is valid. \qed
+    \end{enumerate}
+
+    \section*{Problem 2}
+    \begin{enumerate}[(i)]
+        \item As $f=u+iv \in H(\Omega)$, the Cauchy-Riemann equations must hold, and we can solve them to 
+        obtain $v(x,y)$. We have that $\partial_{x} \, u = 2(1-y)$ and $\partial_{y} \, u = -2x$, which gives:
+        \begin{align*}
+            \partial_{x} \, v &= -\partial_{y} \, u = 2x \\
+            \partial_{y} \, v &= \partial_{x} \, u = 2(1-y) \\
+        \end{align*}
+        Applying the antiderivative w.r.t $x$, we obtain:
+        \begin{align*}
+            v(x,y) &= x^{2} + C(y) \\
+            \Rightarrow \partial_{y} \, v &= C'(y) = 2(1-y) \\
+            \Rightarrow C(y) &= 2y - y^{2} + C, \, C\in \mathbb{R}  \\
+            \Rightarrow \Aboxed{ v(x,y) &= x^{2} + 2y - y^{2} + C }
+        \end{align*}
+        
+        \item For a function $f=u+iv$ to be entire, then $\Delta u = \Delta v = 0$ in $\mathbb{C}$. When 
+        $v(x,y) = 3x^{3}y - 2x^{2} + 5xy^{2} - 1$:
+        \begin{align*}
+            \Delta v(x,y) &= \partial^{2}_{xx} \, v + \partial^{2}_{yy} \, v \\
+                &= \partial_{x}(9x^{2}y-4x+5y^{2}) + \partial_{y}(3x^{3}+10y) \\
+                &= 19xy - 4 + 10 \\
+                &= 19xy - 6,
+        \end{align*} which is only $0$ on the set of points where $\{xy = \frac{6}{19}, \, x \in \mathbb{R}, 
+            \, y \in \mathbb{R}\}$, which is only a subset of $\mathbb{C}$. Therefore, there is no \textbf{entire} 
+        function $f=u+vi$ with $v(x,y)=3x^{3}y - 2x^{2} + 5xy^{2} - 1$. \qed
+    \end{enumerate}
+
+    \section*{Problem 3}
+    For this problem, let $z=x + yi$.
+    \begin{enumerate}[(i)]
+        \item The hyperbolic sine function can be expressed as:
+        \begin{equation*}
+            \sinh(z) := \frac{1}{2}(e^{z}-e^{-z})
+        \end{equation*}
+        \begin{align*}
+            \therefore \sinh(2z) = i &\Leftrightarrow \frac{1}{2}(e^{2z}-e^{-2z}) = i \\
+            \frac{1}{2}e^{-2z}(e^{4z}-1) &= i \\
+            e^{4z}-1 &= 2ie^{2z} \\
+            e^{4z} - 2ie^{2z} -1 &= 0 \\
+            (e^{2z} - i)^{2} -i^{2} -1 &= 0 \\
+            (e^{2z} - i)^{2} &= 0 \\
+            e^{2z} &= i \\
+            e^{2x+2yi} &= i \\
+            e^{2x}e^{2yi} &= i \\
+            e^{2x}e^{2yi} &= e^{\frac{\pi}{2}ni}, \, n \in \mathbb{Z} \\
+            &\Rightarrow e^{2x} = 1, \, 2y=\frac{n\pi}{2} \\
+            &\Leftrightarrow x = 0, \, y = \frac{n\pi}{4}
+        \end{align*}
+        The set of solutions is therefore $\{\frac{n\pi}{4}i \, : \, n \in \mathbb{Z}\}$. \\
+
+        \item Cosine and sine can be expressed as:
+        \begin{equation*}
+            \cos(z) := \frac{1}{2}(e^{iz}+e^{-iz}), \, \sin(z) := \frac{1}{2i}(e^{iz}-e^{-iz})
+        \end{equation*}
+        
+        \begin{align*}
+            \therefore 2\cos(z) &= i\sin(z) \\
+            (e^{iz}+e^{-iz}) &= \frac{1}{2}(e^{iz}-e^{-iz}) \\
+            e^{iz}+e^{-iz} &= \frac{1}{2}e^{iz} - \frac{1}{2}e^{-iz} \\
+            \frac{1}{2}e^{iz} + \frac{3}{2}e^{-iz} &= 0 \\
+            e^{iz} + 3e^{-iz} &= 0 \\
+            e^{iz} &= -3e^{-iz} \\
+            e^{2iz} &= -3 \\
+            e^{-2y+2ix} &= 3e^{n\pi i} \\
+            e^{-2y}e^{2ix} &= 3e^{n\pi i} \\
+            &\Rightarrow e^{-2y} = 3, \, 2x = n\pi \\
+            &\Rightarrow -2y = \ln(3), \, x = \frac{n\pi}{2} \\
+            &\Rightarrow x = \frac{n\pi}{2}, \, y = -\frac{1}{2}\ln(3)
+        \end{align*}
+        The set of solutions is therefore $\{\frac{n\pi}{2} - \frac{1}{2}i\ln(3) \, : \, n \in \mathbb{Z}\}$ \\
+        
+        \item Let $w = z+i$. We then have:
+        \begin{align*}
+            (z-i)^{4} &= (z+i)^{4} \\
+            w^{4} &= \overline{w}^{4} \\
+            \Rightarrow w &= \overline{w} \\ 
+            \Rightarrow \Im(w) &= 0 \Rightarrow \Im(z+i) = 0 \\
+            \Rightarrow \Im(x+yi + i) &= 0 \\
+            \Rightarrow \Im((x+(y+1)i)) &= 0 \\
+            \Rightarrow y+1 &= 0 \\
+            \Rightarrow y &= -1
+        \end{align*}
+        The set of solutions is therefore $\{x - i \, : \, x \in \mathbb{R}\}$
+
+    \end{enumerate}
+
+    \section*{Problem 4}
+    \begin{enumerate}[(i)]
+        \item Let $z = x + yi$. 
+        \begin{align*}
+            \sin(z) &= \frac{1}{2i}(e^{iz}-e^{-iz}) \\
+                &= \frac{1}{2i}(e^{ix-y} - e^{-ix + y}) \\
+                &= \frac{1}{2i}(e^{ix}e^{-y} - e^{-ix}e^{y}) \\
+                &= \frac{1}{2i}(e^{-y}(\cos(x) + i\sin(x)) - e^{y}(\cos(x) - i\sin(x))) \\
+                &= \frac{1}{2i}(e^{-y}\cos(x) + ie^{-y}\sin(x) - e^{y}\cos(x) + ie^{y}\sin(x)) \\
+                &= \frac{1}{2i}((e^{-y}\cos(x) - e^{y}\cos(x)) + i(e^{-y}sin(x)+e^{y}\sin(x))) \\
+                &= \frac{1}{2}\sin(x)(e^{-y}+e^{y}) -\frac{1}{2}i\cos(x)(e^{-y} - e^{y}) \\
+            \Rightarrow \Re(\sin(z)) &= \frac{1}{2}\sin(x)(e^{y}+e^{-y}) \\
+                &= \sin(x)(\frac{1}{2}(e^{y}+e^{-y})) \\
+                &= \sin(x)\cosh(y), \text{ from } \cosh(z) = \frac{1}{2}(e^{z}+e^{-z}), \, \forall z \in \mathbb{C} \\
+                &= \sin(\Re(z))\cosh(\Im(z)) \\
+        \end{align*} \qed
+        
+        \item We have that:
+        \begin{align*}
+            \cos(z) &:= \frac{1}{2}(e^{iz}+e^{-iz}) \\
+                    &= \frac{1}{2}(e^{ire^{i\theta}} + e^{-ire^{i\theta}}) \\
+                    &= \frac{1}{2}(e^{ir(\cos(\theta)+i\sin(\theta))} + e^{-ir(\cos(\theta)+i\sin(\theta))}) \\
+                    &= \frac{1}{2}(e^{ir\cos(\theta)}e^{-r\sin(\theta)} + e^{-ir\cos(\theta)}e^{r\sin(\theta)}) \\
+                    % &= \frac{1}{2}e^{-ir\cos(\theta)}e^{-r\sin(\theta)}(e^{2ir\cos(\theta)} + e^{2r\sin(\theta)}) \\
+                    % &= \frac{1}{2}(\cos(r\cos(\theta)) - i\sin(r\cos(\theta)))e^{-r\sin(\theta)}
+                    %     ((\cos(2r\cos(\theta)) + i\sin(2r\cos(\theta))) + (\cos(2r\theta)))
+        \end{align*}
+        
+        
+    \end{enumerate}
+
+    \section*{Problem 5}
+    The function $\Log(z)$ is defined as:
+    \begin{equation*}
+        \Log(z) := \ln|z| + i\Arg(z)
+    \end{equation*}
+    \begin{enumerate}[(i)]
+        \item \begin{align*}
+            |-1-i| &= \sqrt{(-1)^{2} + (-1)^{2}} \\
+                &= \sqrt{2} \\
+            \Arg(-1-i) &= \arctan(\frac{-1}{-1}) \\ 
+                    &= \frac{\pi}{4} \\
+            \Aboxed{ \therefore \Log(-1-i) &= \ln(\sqrt{2}) + \frac{\pi}{4}i}
+        \end{align*}
+        \item \begin{align*}
+            |2e^{3\pi i}| &= 2 \\
+            \Arg(2e^{3\pi i}) &= 3\pi \mod{2\pi} \\
+                            &= 0, \text{ as }\Arg(z) \in (-\pi, \pi) \\
+            \Aboxed{ \therefore \Log(2e^{3\pi i}) &= \ln(2) }
+        \end{align*}
+       
+        \item We have that $(-1-i\sqrt{3})^{2} = (1+i\sqrt{3})^{2} = 1 + 2i\sqrt{3} - 3 = -2 + 2i\sqrt{3}$:
+        \begin{align*}
+            \therefore |(-1-i\sqrt{3})^{2}| &= \sqrt{(-2)^{2}+(2\sqrt{3})^{2}} = 4 \\
+            \Arg(-1-i\sqrt{3})^{2}) &= \arctan(\frac{2\sqrt{3}}{-2}) \\
+                &= \arctan(\frac{\sqrt{3}}{-1}) \\
+                &= \frac{2\pi}{3} \\
+            \Rightarrow \Log((-1-i\sqrt{3})^{2}) &= \ln(4) + \frac{2\pi}{3}i = 2\ln(2) + 2(\frac{\pi}{3})i \\
+            \Aboxed{\therefore \Log((-1-i\sqrt{3})^{2}) &= 2(\ln(2) + \frac{\pi}{3}i) }
+        \end{align*}
+
+        For $(-1-i\sqrt{3})$:
+        \begin{align*}
+            |(-1-i\sqrt{3})| &= \sqrt{(-1)^{2} + (-\sqrt{3})^{2}} = 2 \\
+            \Arg(-1-i\sqrt{3}) &= \arctan(\frac{-\sqrt{3}}{-1}) = \frac{\pi}{3} \\
+            \Aboxed{\therefore \Log(-1-i\sqrt{3}) &= \ln(2) + \frac{\pi}{3}i}
+        \end{align*}
+
+        We can therefore observe that:
+        \begin{equation*}
+            \Log((-1-i\sqrt{3})^{2}) = 2\Log(-1-i\sqrt{3}),
+        \end{equation*}which could imply that the rules for logarithms in the real domain could also apply in $\mathbb{C}$, namely the rule:
+        \begin{equation*}
+            \log(x^{n}) = n\log(x), \, \{x \in \mathbb{R}, \, n\in \mathbb{R} \, : \, x > 0\}
+        \end{equation*}
+        
+        \item We have that: 
+        \begin{align*}
+            \frac{1}{z} &= z^{-1} \\
+                &= \frac{x-yi}{x^{2}+y^{2}} \\
+                &= \frac{x}{x^{2}+y^{2}} - \frac{y}{x^{2}+y^{2}}i \\
+            |\frac{1}{z}| &= \sqrt{\frac{x^{2}+y^{2}}{(x^{2}+y^{2})^{2}}} \\
+                &= \sqrt{\frac{1}{x^{2}+y^{2}}} \\
+            \Arg(\frac{1}{z}) &= \arctan(\frac{-\frac{y}{x^{2}+y^{2}}}{\frac{x}{x^{2}+y^{2}}}) \\
+                &= -\arctan(\frac{y}{x}) \\
+            \therefore \Log(\frac{1}{z}) &= \ln(\sqrt{\frac{1}{x^{2}+y^{2}}}) - i\arctan(\frac{y}{x}) \\
+            &= \frac{1}{2}\ln(\frac{1}{x^{2}+y^{2}}) - i\arctan(\frac{y}{x}) \\
+            &= -\frac{1}{2}\ln(x^{2}+y^{2}) - i\arctan(\frac{y}{x}) \\
+        \end{align*} 
+        We also have that:
+        \begin{align*}
+            |z| &= \sqrt{x^{2}+y^{2}} \\
+            \Arg|z| &= \arctan(\frac{y}{x}) \\
+            \Log(z) &= \ln(\sqrt{x^{2}+y^{2}}) + i\arctan(\frac{y}{x}) \\
+                    &= \frac{1}{2}\ln(x^{2}+y^{2}) + i\arctan(\frac{y}{x}) \\
+                    &= -\Log(\frac{1}{z})
+        \end{align*}
+        As $\Log(\frac{1}{z}) = -\Log(z), \, \{z \in \mathbb{C} : |z| > 0\}$, the only $z \in \mathbb{C}$ where $\Log(\frac{1}{z}) \neq \Log(z)$ is where
+        $\Arg(z)$ is discontinuous, that is along $(-\infty, 0]$. 
+    \end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,299 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\title{Assignment 5}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 5}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    The given closed polygonal arc can be expressed as a piecewise smooth arc:
+    \[
+        \begin{cases}
+            \alpha_{1} = t(1+i), & t\in[0,1] \\
+            \alpha_{2} = t + (2-t)i, & t\in[1,2] \\
+            \alpha_{3} = -t, & t\in[-2,0]
+        \end{cases}  
+    \]
+    The derivatives are:
+    \[
+        \begin{cases}
+            \alpha'_{1} = 1+i, & t\in[0,1] \\
+            \alpha'_{2} = 1 - i, & t\in[1,2] \\
+            \alpha'_{3} = -1, & t\in[-2,0]
+        \end{cases}    
+    \]
+    
+    \begin{enumerate}[i)]
+        \item $f(z) = z$:
+        \begin{align*}
+            \oint_{\alpha} z \, dz &= \int_{\alpha_{1}} z \, dz + \int_{\alpha_{2}} z \, dz + \int_{\alpha_{3}} z \, dz \\
+                &= \int_{0}^{1} t(1+i)(1+i) \, dt + \int_{1}^{2} (t+(2-t)i)(1-i) \, dt 
+                    + \int_{-2}^{0} (-t)(-1) \, dt  \\
+                &= (1+i)^{2}\int_{0}^{1} t \, dt + (1-i)\int_{1}^{2} (t+2i-ti) \, dt 
+                    + \int_{-2}^{0} t \, dt  \\   
+                &= (2i) [\frac{1}{2}t^{2}]^{1}_{0} + (1-i)[\frac{(1-i)}{2}t^{2}+2it]^{2}_{1} + [\frac{1}{2}t^{2}]^{0}_{-2}  \\  
+                &= i + (1-i) ((2(1-i) + 4i)-(\frac{(1-i)}{2} +2i)) - 2 \\
+                &= i + (1-i)(2-2i+4i-(\frac{1}{2}-\frac{1}{2}i+2i)) - 2 \\
+                &= i + \frac{3}{2} + \frac{1}{2}i -\frac{3}{2}i + \frac{1}{2} -2 \\
+                &= 0    
+        \end{align*}
+        \item 
+        \begin{align*}
+            \ell(\alpha) &= \int_{\alpha_{1}}|\alpha'_{1}(t)| \, dt + \int_{\alpha_{2}}|\alpha'_{2}(t)| \, dt
+                + \int_{\alpha_{3}}|\alpha'_{3}(t)| \, dt \\
+                &= \int_{0}^{1}|1+i| \, dt + \int_{1}^{2}|1-i| \, dt + \int_{-2}^{0} |-1| \, dt \\
+                &= \sqrt{2}\int_{0}^{1}\, dt + \sqrt{2}\int_{1}^{2} \, dt + \int_{-2}^{0} \, dt \\
+                &= \sqrt{2} + \sqrt{2}(2-1) + (0-(-2)) \\
+                &= \sqrt{2} + \sqrt{2} + 2 \\
+                &= 2(\sqrt{2} + 1)
+        \end{align*}
+        
+        \item Let $f(z) = \Re(z) = x$:
+        \begin{align*}
+            \int_{\alpha} f(z) \, dz &= \int_{0}^{1}\Re(t(1+i))(1+i) \, dt + \int_{1}^{2}\Re(t+(2-t)i)(1-i) \, dt
+                + \int_{-2}^{0}\Re(-t)(-1) \, dt \\
+                &= (1+i)\int_{0}^{1}t \, dt + (1-i)\int_{1}^{2} t \, dt -\int_{-2}^{0} -t \, dt \\
+                &= (1+i) [\frac{1}{2}t^{2}]^{1}_{0} + (1-i)[\frac{1}{2}t^{2}]^{2}_{1} + [\frac{1}{2}t^{2}]^{0}_{-2} \\
+                &= \frac{1}{2}(1+i) + \frac{3}{2}(1-i) - 2 \\
+                &= \frac{1}{2} + \frac{1}{2}i + \frac{3}{2}1 - \frac{3}{2}i - 2 \\
+                &= 0 - i \\
+                &= -i
+        \end{align*}
+    \end{enumerate}
+
+    \section*{Problem 2}
+    \begin{enumerate}[i)]
+        \item Let $f(z) = \frac{1}{z^{2}}$, and let $\alpha(t) = -t + (1-t)i, \, t\in[0,1]$. We have the bound:
+        \begin{equation}
+            \Big|\int_{\alpha} f(z) \, dz \Big| \leq M(f) \ell(\alpha), \label{eq:2.1}
+        \end{equation}
+        where:
+        \begin{align*}
+            \ell(\alpha) &= \int_{0}^{1}|-1-i| \, dt \\
+                &= \int_{0}^{1}\sqrt{1^{2}+1^{2}} \, dt \\
+                &= \sqrt{2}
+        \end{align*}
+        We also have:
+        \begin{align*}
+            M(f) &= \max\{|f(z)| : z\in \alpha\} \\
+                &= \max\{|\frac{1}{z^{2}}| : z\in \alpha\} \\
+                &= \min\{|z^{2}| : z\in \alpha\} 
+        \end{align*}
+        We can observe that the smallest value of $|z^{2}|$ (along $\alpha$) occurs on the midpoint on the straight line from $i$ to
+        $-1$, which is the point $z = -\frac{1}{2} + \frac{1}{2}i$. At this point:\\
+        \begin{align*}
+            |f(z)| &= \frac{1}{|(-\frac{1}{2} + \frac{1}{2}i)^{2}|} \\
+                &= \frac{1}{|-\frac{1}{2}i|} \\
+                &= \frac{1}{\frac{1}{2}} \\
+            \Rightarrow   M(f) &= 2
+        \end{align*} 
+        Using this result and Inequality \eqref{eq:2.1} above, we obtain:
+        \begin{equation*}
+            \Big|\int_{\alpha} f(z) \, dz \Big| \leq 2\sqrt{2} = M(f)\ell(\alpha)
+        \end{equation*} \qed
+        
+        \item Let $\alpha_{R}(t)=Re^{it}, \, t\in[0,\pi]$, where $\alpha'_{R}(t) = iRe^{it}$: 
+        \begin{align*}
+            \ell(\alpha) &= \int_{0}^{\pi}|iRe^{it}| \, dt \\
+                &= \int_{0}^{\pi}|iR(\cos(t) + i\sin(t))| \, dt \\ 
+                &= \int_{0}^{\pi}|iR\cos(t) - R\sin(t)| \, dt \\ 
+                &= \int_{0}^{\pi} \sqrt{R^{2}\cos^{2}(t) + R^{2}\sin^{2}(t)} \, dt \\ 
+                &= \int_{0}^{\pi} \sqrt{R^{2}(\cos^{2}(t) + \sin^{2}(t))} \, dt \\    
+                &= \int_{0}^{\pi} R \, dt \\  
+                &= R\pi   
+        \end{align*}
+        Let $f_{1}(z) = e^{ikz}=e^{ik(x+iy)} = e^{-ky}e^{ikx}$:
+        \begin{align*}
+            M_{1}(f) &= \max\{|f_{1}(z)| \, : \, z\in\alpha\}  \\
+                &= \max\{|e^{-ky}e^{ikx}| \, : \, z\in\alpha\} \\
+                &= \max\{e^{-ky}\, : \, z\in\alpha\} 
+        \end{align*}
+        As $y\geq0, \, k>0$, if $ky$ is minimum (i.e. $ky=0$), then $e^{-ky} = 1$; if $ky$ is maximum (i.e. $ky \to \infty$), 
+        then $e^{-ky} \to 0$. Therefore, we have that:
+        \begin{equation}
+            M_{1}(f) = \max\{e^{-ky}\, : \, z\in\alpha\} = 1 \label{eq:m1f} \\
+        \end{equation}
+        Let $f_{2}(z) = \frac{1}{z^{2}+1}$:
+        \begin{align*}
+            M_{2}(f) &= \max\{|f_{2}(z)| \, : \, z\in\alpha\} \\
+                &= \max\{|\frac{1}{z^{2}+1}| \, : \, z\in\alpha\} \\
+                &= \min\{|z^{2}+1| \, : \, z\in\alpha\} 
+        \end{align*}
+        Using the Inverse Triangle Inequality ($|\gamma - \eta| \geq ||\gamma| - |\eta||$, where $\gamma = z^{2}$, and $\eta = -1$:
+        \begin{align}
+            |z^{2} + 1| &\geq ||z^{2}| - |-1|| \nonumber \\
+            |z^{2} + 1| &\geq R^{2} - 1 \nonumber \\
+            \frac{1}{|z^{2} + 1|} &\leq \frac{1}{R^{2} - 1} \label{eq:m2f} 
+        \end{align}
+
+        Combining Equations \autoref{eq:m1f}, \autoref{eq:m2f}, we have:
+        \begin{gather*}
+            \Big|\int_{\alpha_{R}} \frac{e^{ikz}}{1+z^{2}} \, dz\Big| \leq R\pi(\frac{1}{R^{2}-1}) \\
+            \Big|\int_{\alpha_{R}} \frac{e^{ikz}}{1+z^{2}} \, dz\Big| \leq (\frac{R\pi}{R^{2}-1}) \\
+            \Rightarrow \lim_{R \to +\infty} \Big|\int_{\alpha_{R}} \frac{e^{ikz}}{1+z^{2}} \, dz\Big| = 0 
+        \end{gather*}\qed
+    
+        
+
+        \item Let $\gamma_{R}(t) = R + it, \, t\in[0,h]$, $\gamma_{R}'(t) = i$:
+        \begin{align*}
+            \therefore \int_{\gamma_{R}}e^{-z^{2}} \, dz &= \int_{0}^{h}e^{-(R+it)^{2}}(i) \, dt \\
+                &= i\int_{0}^{h}e^{-(R^{2} + (2iR-1)t)} \, dt \\
+                &= i\int_{0}^{h}e^{-R^{2}}e^{(1-2iR)t} \, dt \\
+                &= ie^{-R^{2}}\int_{0}^{h}e^{(1-2iR)t} \, dt \\
+                &= ie^{-R^{2}} [\frac{1}{(1-2iR)}e^{(1-2iR)t}]^{h}_{0} \\
+                &= ie^{-R^{2}} (\frac{1}{(1-2hi)}e^{(1-2hi)t} - 1) \\
+        \end{align*}
+        \begin{equation*}
+            \therefore \lim_{R \to +\infty}\int_{\gamma_{R}}e^{-z^{2}} \, dz = \lim_{R \to +\infty} ie^{-R^{2}} (\frac{1}{(1-2hi)}e^{(1-2hi)t} - 1) = 0
+        \end{equation*} \qed
+
+    \end{enumerate}
+
+    \section*{Problem 3}
+    \begin{enumerate}[i)]
+        \item 
+        $f(z) = \Log(z)$ has an antiderivative:
+        \begin{equation*}
+            F(z) = z\Log(z) - z
+        \end{equation*}
+        Let $\alpha(t) = 1 + (i-1)t, \, t\in[0,1]$ be a curve, $\alpha\in\Omega$. As $f$ has an antiderivative $F$ everywhere in 
+        $\mathbb{C} \, \backslash \, \{(\Re(z)\in(-\infty, 0]) \cap (\Im(z)= 0)\}$ (i.e. away from the branch cut), we can 
+        conclude that:
+        \begin{align*}
+            \int_{\alpha} f(z) \, dz &= F(z_{f}) - F(z_{i}) \\
+                &= F(\alpha(1)) - F(\alpha(0)) \\
+                &= F(i) - F(1) \\
+                &= (i\Log(i) - i) - (\Log(1) - 1) \\
+                &= (i(i\frac{\pi}{2})-i) - (-1) \\
+                &= 1 - \frac{\pi}{2} - i,
+        \end{align*}as the curve $\alpha(t)$ is away from the branch cut.
+        
+        \item
+        Let $f(z) = \overline{z}$, Let $\alpha_{+} = e^{it}, \, t\in[0,\pi], \, \alpha'_{+} = ie^{it}$, and let 
+        $\alpha_{-} = e^{-it}, \, t\in[0,\pi], \, \alpha'_{-} = -ie^{it}$. \\
+        For $\alpha_{+}$:
+        \begin{align*}
+            \int_{\alpha_{+}} f(z) \, dz &= \int_{0}^{\pi} (ie^{it})\overline{e^{it}} \, dt \\
+                &= \int_{0}^{\pi} (ie^{it})e^{-it} \, dt \\
+                &= i \int_{0}^{\pi}  \, dt \\
+                &= i\pi
+        \end{align*}
+
+        For $\alpha_{-}$:
+        \begin{align*}
+            \int_{\alpha_{-}} f(z) \, dz &= \int_{0}^{\pi} (-ie^{-it})\overline{e^{-it}} \, dt \\
+                &= \int_{0}^{\pi} (-ie^{-it})e^{it} \, dt \\
+                &= -i \int_{0}^{\pi} \, dt \\
+                &= -i\pi
+        \end{align*}
+    
+    \end{enumerate}
+
+    \section*{Problem 4}
+    Since $F(t) = \alpha^{-1}e^{\alpha t}$ is an antiderivative of $f(t) = e^{\alpha t} = e^{at}e^{ibt}$:
+    \begin{align*}
+        \int e^{at}e^{ibt} \, dt  &= \alpha^{-1}e^{\alpha t}  \\
+        \int e^{at}(\cos(bt) + i\sin(bt)) \, dt  &= \frac{a-bi}{a^{2}+b^{2}}(e^{at}(\cos(bt) + i\sin(bt))) \\
+        \int e^{at}\cos(bt) \, dt + i\int e^{at} \sin(bt) \, dt  &= \frac{a-bi}{a^{2}+b^{2}}(e^{at}(\cos(bt) + i\sin(bt))) \\
+        \int e^{at}\cos(bt) \, dt + i\int e^{at} \sin(bt) \, dt  &= \frac{e^{at}}{a^{2}+b^{2}}(a\cos(bt) + ai\sin(bt) - b\cos(bt) + b\sin(bt)) \\
+        \int e^{at}\cos(bt) \, dt + i\int e^{at} \sin(bt) \, dt  &= \frac{e^{at}}{a^{2}+b^{2}}((a\cos(bt) + b\sin(bt)) + i(a\sin(bt) - b\cos(bt))) \\
+        \int e^{at}\cos(bt) \, dt + i\int e^{at} \sin(bt) \, dt  &= \frac{e^{at}}{a^{2}+b^{2}}(a\cos(bt) + b\sin(bt)) + i\frac{e^{at}}{a^{2}+b^{2}}(a\sin(bt) - b\cos(bt)) 
+    \end{align*}
+    Taking Re(LHS) = Re(RHS), and Im(LHS) = Im(RHS), gives:
+    \begin{align*}
+        \int e^{at}\cos(bt) \, dt &= \frac{e^{at}}{a^{2}+b^{2}}(a\cos(bt) + b\sin(bt)) \\
+        \int e^{at}\sin(bt) \, dt &= \frac{e^{at}}{a^{2}+b^{2}}(a\sin(bt) - b\cos(bt))
+    \end{align*} \qed
+
+    For $a>0$:
+    \begin{align*}
+        \int_{0}^{\infty} e^{-at}\cos(bt) \, dt &= \frac{e^{-at}}{(-a)^{2}+b^{2}}(-a\cos(bt) + b\sin(bt)) \Big|^{\infty}_{0} \\
+            &= 0 - (\frac{1}{a^{2}+b^{2}}(-a)) \\
+            &= \frac{a}{a^{2}+b^{2}} 
+    \end{align*} \qed
+
+    \begin{align*}
+        \int_{0}^{\infty} e^{-at}\sin(bt) \, dt &= \frac{e^{-at}}{(-a)^{2}+b^{2}}(-a\sin(bt) - b\cos(bt)) \Big|^{\infty}_{0} \\
+            &= 0 - (\frac{1}{a^{2}+b^{2}})(-b) \\
+            &= \frac{b}{a^{2}+b^{2}} 
+    \end{align*} \qed
+
+    \section*{Problem 5}
+    Let $\alpha_{\epsilon} = z_{0} + \epsilon e^{it}, \, t\in[0,\pi]$. This gives:
+    \begin{align*}
+        f(\alpha_{\epsilon}(t)) &= \frac{a}{(z_{0} +\epsilon e^{it}) - z_{0}} + g(\epsilon e^{it} - z_{0}), \\
+            &= \frac{a}{\epsilon e^{it}} + g(\epsilon e^{it} - z_{0}), \\
+        \alpha_{\epsilon}'(t) &= i\epsilon e^{it} \\
+        \Rightarrow f(\alpha_{\epsilon}(t))\alpha_{\epsilon}'(t) &= (\frac{a}{\epsilon e^{it}} + g(\epsilon e^{it} - z_{0}))(i\epsilon e^{it}) \\
+        &= ai + i\epsilon e^{it} \, g(\epsilon e^{it} - z_{0})
+    \end{align*}
+    This gives:
+    \begin{align*}
+        \int_{\alpha_{\epsilon}} f(z) \, dz &= \int_{0}^{\pi} ai + i\epsilon e^{it} \, g(\epsilon e^{it} - z_{0}) \, dt \\
+            &= ai \int_{0}^{\pi}\, dt + i\epsilon \int_{0}^{\pi}e^{it}g(\epsilon e^{it} - z_{0}) \, dt \\
+            &= ai\pi + i\epsilon \int_{0}^{\pi}e^{it}g(\epsilon e^{it} - z_{0}) \, dt 
+    \end{align*}
+    Taking the limit then yields:
+    \begin{align*}
+        \lim_{\epsilon \to 0}\int_{\alpha_{\epsilon}} f(z) \, dz &= ai\pi + i(0) \int_{0}^{\pi}e^{it}g(- z_{0}) \, dt \\
+            &= i\pi a 
+    \end{align*} \qed
+    
+\end{document}  
