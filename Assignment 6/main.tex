@@ -219,7 +219,7 @@
         -\pi i + 0 + \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= 0 \\
         \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \pi i
     \end{align*}
-    Taking Im(LHS) = Re(RHS) gives:
+    Taking Im(LHS) = Im(RHS) gives:
     \begin{align*}
         2\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \pi \\
         \int_{0}^{\infty}\frac{\sin(x)}{x}\, dx &= \frac{\pi}{2} 
@@ -253,7 +253,53 @@
         (1+ia)\int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt &= \frac{\sqrt{\pi}}{2} \\
         \int_{0}^{\infty} e^{-(1+ia)^{2}t^{2}} \, dt &= \frac{\sqrt{\pi}}{2(1+ia)} 
     \end{align*} \qed \\
-    
+    From this:
+    \begin{gather*}
+        \int_{0}^{\infty} e^{-(1+2ia-a^{2})t^{2}} \, dt = \frac{\sqrt{\pi}}{2(1+ia)} \\
+        \int_{0}^{\infty} e^{-((1-a^{2})t^{2}+2iat^{2})} \, dt = \frac{\sqrt{\pi}}{2(1+ia)} \\
+        \int_{0}^{\infty} e^{(a^{2}-1)t^{2}-2iat^{2}} \, dt = \frac{\sqrt{\pi}}{2}(\frac{1-ia}{1+a^{2}}) \\
+        \int_{0}^{\infty} e^{(a^{2}-1)t^{2}}e^{-i2at^{2}} \, dt = \frac{\sqrt{\pi}}{2(1+a^{2})} - i\frac{a\sqrt{\pi}}{2(1+a^{2})} \\
+        \int_{0}^{\infty} e^{(a^{2}-1)t^{2}}(\cos(2at^{2})-i\sin(2at^{2})) \, dt = \frac{\sqrt{\pi}}{2(1+a^{2})} - i\frac{a\sqrt{\pi}}{2(1+a^{2})} \\
+    \end{gather*}
+    Taking Re(LHS)=Re(RHS):
+    \begin{equation*}
+        \int_{0}^{\infty} e^{(a^{2}-1)t^{2}}\cos(2at^{2}) \, dt = \frac{\sqrt{\pi}}{2(1+a^{2})} 
+    \end{equation*}
+    Let $a=1$:
+    \begin{gather*}
+        \int_{0}^{\infty} e^{(1-1)t^{2}}\cos(2t^{2}) \, dt = \frac{\sqrt{\pi}}{2(1+1)} \\
+        \int_{0}^{\infty} \cos(2t^{2}) \, dt = \frac{\sqrt{\pi}}{4} 
+    \end{gather*}
+    Let $u=\sqrt{2}t$, $du = \sqrt{2}\, dt$:
+    \begin{gather*}
+        \therefore \int_{0}^{\infty} \cos(2(\frac{u}{\sqrt{2}})^{2}) \, \frac{du}{\sqrt{2}} = \frac{\sqrt{\pi}}{4} \\
+        \int_{0}^{\infty} \cos(2(\frac{u^{2}}{2})) \, \frac{du}{\sqrt{2}} = \frac{\sqrt{\pi}}{4} \\
+        \frac{1}{\sqrt{2}}\int_{0}^{\infty} \cos(u^{2}) \, du= \frac{\sqrt{\pi}}{4} \\
+        \int_{0}^{\infty} \cos(u^{2}) \, du= \frac{\sqrt{2\pi}}{4} \\
+        \int_{0}^{\infty} \cos(u^{2}) \, du= \sqrt{\frac{\cancel{2}\pi}{\cancelto{8}{16}}} \\
+        \int_{0}^{\infty} \cos(u^{2}) \, du= \sqrt{\frac{\pi}{8}} \\
+        \Rightarrow \int_{0}^{\infty} \cos(t^{2}) \, dt= \sqrt{\frac{\pi}{8}} 
+    \end{gather*} \qed
+
+    Taking Im(LHS)=Im(RHS):
+    \begin{equation*}
+        \int_{0}^{\infty} e^{(a^{2}-1)t^{2}}\sin(2at^{2}) \, dt = \frac{a\sqrt{\pi}}{2(1+a^{2})}
+    \end{equation*}
+    Let $a=1$:
+    \begin{gather*}
+        \int_{0}^{\infty} e^{(1-1)t^{2}}\sin(2t^{2}) \, dt = \frac{\sqrt{\pi}}{2(1+1)} \\
+        \int_{0}^{\infty} \sin(2t^{2}) \, dt = \frac{\sqrt{\pi}}{4} 
+    \end{gather*}    
+    Similarly, let $u=\sqrt{2}t$, $du = \sqrt{2}\, dt$:
+    \begin{gather*}
+        \frac{1}{\sqrt{2}}\int_{0}^{\infty} \sin(u^{2}) \, du = \frac{\sqrt{\pi}}{4} \\
+        \int_{0}^{\infty} \sin(u^{2}) \, du = \frac{\sqrt{2\pi}}{4} \\
+        \int_{0}^{\infty} \sin(u^{2}) \, du = \sqrt{\frac{\cancel{2}\pi}{\cancelto{8}{16}}} \\
+        \int_{0}^{\infty} \sin(u^{2}) \, du = \sqrt{\frac{\pi}{8}} \\
+        \Rightarrow \int_{0}^{\infty} \sin(t^{2}) \, dt = \sqrt{\frac{\pi}{8}} = \int_{0}^{\infty} \cos(t^{2}) \, dt 
+    \end{gather*} \qed \\
+    In both cases, we treat $u$ as a 'dummy variable' and just substitute $u=t$ back into the expression.
+
     \section*{Problem 4}
     Since $f(z)=g(z)\, \forall z \in\alpha$, we have that $|f(z)-g(z)|=0$ on the curve $\alpha$. By the Maximum Modulus Principle, 
     $|f(z)-g(z)|$ reaches its maximum on the boundary of the bounded domain (in this case $\alpha$). Therefore, there is no point in the
