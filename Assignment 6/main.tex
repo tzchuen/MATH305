@@ -178,7 +178,7 @@
             {\cancel{\epsilon e^{i(\pi-t)}}})(\cos(-\epsilon\cos(t)) + i\sin(-\epsilon\cos(t)))
             (-i\cancel{\epsilon e^{i(\pi-t)}}) \, dt \nonumber\\
             &= -i\int_{0}^{\pi}e^{-\epsilon\sin(t)}e^{-i\epsilon\cos(t)} \, dt \nonumber \\
-            &= -i\int_{0}^{\pi}e^{-\epsilon(\sin(t)-i\cos(t))} \, dt \label{eq:2.ce} 
+            &= -i\int_{0}^{\pi}e^{-\epsilon(\sin(t)+i\cos(t))} \, dt \label{eq:2.ce} 
     \end{align}
     For the segment $c_{1}$:
     \begin{align}
@@ -188,9 +188,9 @@
     \end{align} 
     For the segment $c_{R}$:
     \begin{align}
-        \int_{c_{R}} f(z) \, dz &= \int_{0}^{\pi} (\frac{e^{R\sin(t)}}{\cancel{Re^{it}}})(\cos(R\cos(t)) + i\sin(R\cos(t)))(i\cancel{Re^{it}}) \, dt \nonumber\\
-            &= i\int_{0}^{\pi}e^{R\sin(t)}e^{iR\cos(t)} \, dt \nonumber\\
-            &= i\int_{0}^{\pi}e^{R(\sin(t)+i\cos(t))} \, dt \label{eq:2.cr} 
+        \int_{c_{R}} f(z) \, dz &= \int_{0}^{\pi} (\frac{e^{-R\sin(t)}}{\cancel{Re^{it}}})(\cos(R\cos(t)) + i\sin(R\cos(t)))(i\cancel{Re^{it}}) \, dt \nonumber\\
+            &= i\int_{0}^{\pi}e^{-R\sin(t)}e^{iR\cos(t)} \, dt \nonumber\\
+            &= i\int_{0}^{\pi}e^{-R(\sin(t)-i\cos(t))} \, dt \label{eq:2.cr} 
     \end{align}
     For the segment $c_{2}$:
     \begin{align}
@@ -206,7 +206,7 @@
     \end{align}
     Taking the limit of \eqref{eq:2.cr} as $R\to\infty$ gives:
     \begin{equation}
-        \lim_{R\to\infty} i\int_{0}^{\pi}e^{R(\sin(t)+i\cos(t))} \, dt = 0 \label{eq:2.limcr}
+        \lim_{R\to\infty} i\int_{0}^{\pi}e^{-R(\sin(t)-i\cos(t))} \, dt = 0 \label{eq:2.limcr}
     \end{equation}
     Taking the limit of \eqref{eq:2.c1}+\eqref{eq:2.c2} as $R\to\infty$ and $\epsilon\to0$ gives:
     \begin{align}
