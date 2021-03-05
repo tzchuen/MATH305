@@ -211,7 +211,7 @@
     Taking the limit of \eqref{eq:2.c1}+\eqref{eq:2.c2} as $R\to\infty$ and $\epsilon\to0$ gives:
     \begin{align}
         &\lim_{R\to\infty}\lim_{\epsilon\to0} (\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + i\int_{\epsilon}^{R} \frac{\sin(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx + i\int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx) \nonumber\\
-        &= \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + i (\lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx)) \nonumber\\
+        &= \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + i (\lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\sin(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\sin(x)}{x} \, dx)) \nonumber\\
         &= \lim_{R\to\infty}\lim_{\epsilon\to0}(\int_{\epsilon}^{R} \frac{\cos(x)}{x} \, dx + \int_{-R}^{-\epsilon} \frac{\cos(x)}{x} \, dx) + 2i\int_{0}^{\infty}\frac{\sin(x)}{x}\, dx, \, \text{by Hint (a)} \label{2.limc1c2}
     \end{align}
     Combining \eqref{eq:2.limce}, \eqref{eq:2.limcr}, \eqref{2.limc1c2}, and substituting into \eqref{eq:2} then gives:
