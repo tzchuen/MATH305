@@ -1,0 +1,246 @@
+\documentclass[a4paper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\makeatletter
+\let\ams@underbrace=\underbrace
+\def\underbrace{\kernel@ifnextchar[{\underbrace@}{\underbrace@[l]}}% default value: l
+\def\underbrace@[#1]#2_#3{%
+  \ifx#1c\relax
+    \let\ubr@align\centering%
+  \else
+    \ifx#1l\relax
+      \let\ubr@align\raggedright%
+    \else
+      \ifx#1r\relax
+        \let\ubr@align\raggedleft%
+      \else
+        \ifx#1f\relax
+          \let\ubr@align\relax%
+        \else
+          \message{`#1' isn't a valid alignment specification for the underbrace command}%
+        \fi
+      \fi
+    \fi
+  \fi
+  \setbox0=\hbox{$\displaystyle#2$}%
+  \ams@underbrace{#2}_{\parbox[t]{\the\wd0}{\ubr@align#3}}%
+}
+\let\ubr@align\relax
+\makeatother
+
+\title{Assignment 7}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 7}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    For $g(z)$:
+    \begin{equation*}
+        |g(z)| = \frac{|f(z)|}{3|z|^{2}}
+    \end{equation*}
+    We consider the boundary conditions of $f(z)$. $\forall \, z$ such that $|z|=2$, we have:
+    \begin{equation*}
+        |g(z)| \leq \frac{12}{3(2)^{2}} = \frac{12}{12} = 1,
+    \end{equation*}
+    and $\forall \, z$ such that $|z|=1$, we have:
+    \begin{equation*}
+        |g(z)| \leq \frac{3}{3(1)^{2}} = \frac{3}{3} = 1,
+    \end{equation*}
+    which gives the upper bound for $g(z)$ on the boundary of the open annulus as:
+    \begin{equation*}
+        |g(z)| \leq 1
+    \end{equation*}
+    By the Maximum Modulus Principle, as the domain of $\{z\in \mathbb{C} \, : \, 1<|z|<2\}$ is bounded and
+    $g(z)$ extends to the boundary of the annuus, then:
+    \begin{equation*}
+        |g(z)| \leq 1
+    \end{equation*}
+    in the entire open annulus. This gives:
+    \begin{align*}
+        |g(z)| = \frac{|f(z)|}{3|z|^{2}} &\leq 1 \\
+        |f(z)| &\leq 3|z|^{2}
+    \end{align*} \qed
+    
+    \section*{Problem 2}
+    The claim that all eigenvalues of $A$ have modulus larger than 2 is equivalent to claiming that
+    $c_{A}(t) = -t^{3} + t^{2} + 4t -24$ has no zeros in the disc $B_{2}(0)$. By Rouch\'{e}'s Theorem, 
+    we then have that:
+    \begin{equation*}
+        |f(z) - 2| < 2, \, \forall z \in B_{2}(0)
+    \end{equation*}
+    To find the eigenvalues of $A$, we let $c_{A}(t) = 0$:
+    \begin{align*}
+        -t^{3} + t^{2} + 4t - 24 &= 0 \\
+        \frac{1}{12}t^{3} - \frac{1}{12}t^{2} - \frac{1}{3}t + 2 &= 0
+    \end{align*}
+    We then let $f(z)=\frac{1}{12}t^{3} - \frac{1}{12}t^{2} - \frac{1}{3}t + 2$. By the Triangle Inequality:
+    \begin{equation*}
+        |f(z)-2| = |\frac{1}{12}t^{3} - \frac{1}{12}t^{2} - \frac{1}{3}t| \leq \frac{1}{12}|t|^{3} - \frac{1}{12}|t|^{2} - \frac{1}{3}|t| 
+    \end{equation*}
+    On the disc $B_{2}(0)$, $|z|=2$. This gives:
+    \begin{equation*}
+        |f(z) - 2| \leq \frac{1}{12}(2^{3}) - \frac{1}{12}(2^{2}) - \frac{1}{3}(2) = -\frac{1}{3} < 2,
+    \end{equation*}
+    which satisfies Rouch\'{e}'s Theorem, i.e. $c_{A}$ has no zeros in the disc $B_{2}(0)$, i.e. all eigenvalues
+    of $A$ have modulus larger than 2. \qed
+    
+    \section*{Problem 3}
+    \begin{enumerate}[i)]
+        \item Let $w=a + bi, \, a, \, b \in \mathbb{R}$:
+        \begin{align*}
+            \Big|\frac{z-w}{1-\overline{w}z}\Big| &= \frac{|1-w|}{|1-\overline{w}(1)|} \\
+                &= \frac{|1-w|}{|1-\overline{w}|} \\
+                &= \frac{|1-(a+bi)|}{|1-(a-bi)|} \\
+                &= \frac{|(1-a) - bi|}{|(1-a) + bi|} \\
+                &= \frac{\cancel{\sqrt{(1-a)^{2} + b^{2}}}}{\cancel{\sqrt{(1-a)^{2} + b^{2}}}} \\
+                &= 1 
+        \end{align*} \qed
+        
+        \item The domain of the function $\Big|\frac{z-w}{1-\overline{w}z}\Big|$ is bounded by $|w|<1$ and $|z|<1$. At the boundary $|z|=1$, we have the result in (i). Then,
+        by the Maximum Modulus Principle, the modulus of the function achieves its maximum on the boundary $|w|<1, \, |z|<1$, and therefore:
+        \begin{equation*}
+            \Big|\frac{z-w}{1-\overline{w}z}\Big| < 1,\, \{z\in \mathbb{C} \,:\, |z|<1\}
+        \end{equation*} \qed
+    \end{enumerate}
+
+    \section*{Problem 4}
+    % Taking the partials of $\phi$ with respect to $x$ and $y$ gives:
+    % \begin{align*}
+    %   \partial_{x} \, \phi(x,y) &= 2(x^{2}-y^{2}-1)(2x) + 8xy^{2} \\
+    %     &= 4x(x^{2}-y^{2}-1+2y^{2}) \\
+    %     &= 4x(x^{2}+y^{2}-1)
+    % \end{align*}
+    % \begin{align*}
+    %   \partial_{y} \, \phi(x,y) &= 2(x^{2}-y^{2}-1)(2y) + 8x^{2}y \\
+    %     &= 4y(x^{2}-y^{2}-1+2x^{2}) \\
+    %     &= 4y(3x^{2}+y^{2}-1)
+    % \end{align*}
+    % To find the critical points, we solve the system of equations:
+    %   \begin{align*}
+    %     \begin{cases}
+    %       4x(x^{2} + y^{2} - 1) = 0 \\
+    %       4y(3x^{2}+y^{2}-1) = 0
+    %     \end{cases}
+    %     &\Rightarrow
+    %     \begin{cases}
+    %       x^{2} + y^{2} = 1 \\
+    %       3x^{2}+y^{2} = 1
+    %     \end{cases} \\
+    %     &\Rightarrow
+    %     \begin{cases}
+    %       y^{2} = 1-x^{2} \\
+    %       3x^{2}+y^{2} = 1
+    %     \end{cases}
+    %   \end{align*}
+    %   This gives:
+    %   \begin{align*}
+    %     3x^{2} + \cancel{1} - x^{2} &= \cancel{1} \\ 
+    %     2x^{2} &= 0 \\
+    %     x &= 0 \\
+    %     \Rightarrow y^{2} &= 1 - 0 \\
+    %     \therefore y &= \pm 1
+    %   \end{align*}
+    %   Hence the critical points are $(x,y) = (0, -1), (0, 1)$. 
+      By the Maximum Modulus Principle, since $\phi(x,y)$ is bounded by $x^{2}+y^{2}\leq1$ and extends to the boundary of this constraint,  
+      then $\phi(x,y)$ reaches its maximum on the boundary $x^{2}+y^{2}=1$. On the boundary of the constraint:
+      \begin{align*}
+        x^{2} &= 1 - y^{2} \\
+        \therefore \varphi(y) &= (1-y^{2}-y^{2}-1)^{2} + 4(1-y^{2})y^{2} \\
+        &= 4y^{4}+4y^{2}-4y^{4} \\
+        &= 4y^{2} \\
+        \Rightarrow \varphi'(y) &= 8y,
+      \end{align*}
+      which gives the critical point of $\varphi$ as $y=0$. The endpoints of $\varphi$ are $\pm 1$, as that is the range of $y$ values for the 
+      constraint. This gives:
+      \[
+        \begin{cases}
+          \varphi(-1) = 4 \\
+          \varphi(0) = 0 \\
+          \varphi(1) = 4 
+        \end{cases}
+      \]
+      Corresponding $x$ values are:
+      \[
+        \begin{cases}
+          y = -1 : & x = 0 \\
+          y = 0 : & x = \pm 1 \\
+          y = 1 : & x = 0
+        \end{cases}
+      \]
+      This gives:
+      \[
+        \begin{cases}
+          f(0,-1) = 4 \\
+          f(1,0) = 0 \\
+          f(-1,0) = 0 \\
+          f(0,1) = 4 
+        \end{cases}  
+      \]
+      From this, we can observe that the maximum of the function $\phi(x,y)$ is attained at $x=0, \, y=\pm 1$. \qed
+   
+    \section*{Problem 5}
+    Consider $e^{f(z)}$:
+    \begin{align*}
+      e^{f(z)} &= e^{\Re(f(z)) + i\Im(f(z))} \\
+        &= e^{\Re(f(z))}e^{i\Im(f(z))} \\
+        &= e^{\Re(f(z))}(\cos(f(z)) + i\sin(f(z)))
+    \end{align*}
+    As $f$ is entire and $\Re(f(z))$ is bounded $\forall z \in \mathbb{C}$, by Liouville's Theorem 
+    $e^{\Re(f(z))}$ and therefore $e^{f(z)}$ is constant, which implies that $f(z)$ is constant as well. \qed
+    
+\end{document}  
