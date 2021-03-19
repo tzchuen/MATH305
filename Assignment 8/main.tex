@@ -1,0 +1,220 @@
+\documentclass[letterpaper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+%\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+%\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\makeatletter
+\let\ams@underbrace=\underbrace
+\def\underbrace{\kernel@ifnextchar[{\underbrace@}{\underbrace@[l]}}% default value: l
+\def\underbrace@[#1]#2_#3{%
+  \ifx#1c\relax
+    \let\ubr@align\centering%
+  \else
+    \ifx#1l\relax
+      \let\ubr@align\raggedright%
+    \else
+      \ifx#1r\relax
+        \let\ubr@align\raggedleft%
+      \else
+        \ifx#1f\relax
+          \let\ubr@align\relax%
+        \else
+          \message{`#1' isn't a valid alignment specification for the underbrace command}%
+        \fi
+      \fi
+    \fi
+  \fi
+  \setbox0=\hbox{$\displaystyle#2$}%
+  \ams@underbrace{#2}_{\parbox[t]{\the\wd0}{\ubr@align#3}}%
+}
+\let\ubr@align\relax
+\makeatother
+
+\title{Assignment 8}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 8}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    The Taylor series is given by:
+    \begin{equation*}
+      f(w) = \sum_{n=0}^{\infty}\frac{f^{(n)}(z_{0})}{n!}(w-z_{0})^{n},
+    \end{equation*} where $w \in \mathbb{C}, \, z_{0} \in \mathbb{C}$
+    \begin{enumerate}[i)]
+      \item 
+      \begin{align*}
+        \frac{1+z}{1-z} &= \frac{1+i+(z-i)}{1-i-(z-i)} \\
+          &= \frac{1+i+(z-i)}{(1-i)(1 - \frac{z-i}{1-i})} \\
+          &= \frac{\frac{1+i+(z-i)}{(1-i)}}{1 - \frac{z-i}{1-i}}
+        % For $\frac{1}{1-z}$, the Taylor series is:
+        % \begin{align*}
+        %   f_{1}(z) = \frac{1}{1-z} &= \frac{1}{1-z_{0}} + \frac{1}{(1-z_{0})^{2}}(z-z_{0}) + \frac{1}{(1-z_{0})^{3}}(z-z_{0})^{2} + \ldots \\
+        %     &= \frac{1}{1-i} + \frac{1}{(1-i)^{2}}((i + (z-i)) - i) + \frac{1}{(1-i)^{3}}((i+(z-i))-i)^{2} + \ldots \\
+        %     &= \frac{1}{1-i} + \frac{1}{(1-i)^{2}}(z-i) + \frac{1}{(1-i)^{3}}(z-i)^{2} + \ldots \\
+        %     &= \sum_{n=0}^{\infty}\frac{(z-i)^{n}}{(1-i)^{n+1}} \\
+        %     &= \frac{1}{1-i}\sum_{n=0}^{\infty}(\frac{z-i}{1-i})^{n}
+        % \end{align*}
+        % Therefore the Taylor series for the given function is:
+        % \begin{equation*}
+        %   f(z) = \frac{1+z}{1-z} = \frac{1+z}{1-i}\sum_{n=0}^{\infty}(\frac{z-i}{1-i})^{n}
+        % \end{equation*}
+        % $\frac{1}{f(z)} = \frac{1-z}{1+z}$ has a simple zero at $z=1$, which means $f(z)$ has a simple pole at $z=1$. The radius of convergence is
+        % therefore:
+        % \begin{align*}
+        %   |i-1| &= \sqrt{1^{2}+1^{2}} \\
+        %     &= \sqrt{2}
+        % \end{align*}
+      \end{align*}
+      Using the geometric series then gives:
+      \begin{align*}
+        \frac{1+z}{1-z} &= \frac{1+i+(z-i)}{(1-i)}\sum_{n=0}^{\infty}(\frac{z-i}{1-i})^{n} \\
+          &= \frac{1+i}{1-i}\frac{z-i}{1-i}\sum_{n=0}^{\infty}(\frac{z-i}{1-i})^{n} \\
+          &= \frac{1+i}{1-i}\sum_{n=0}^{\infty}(\frac{z-i}{1-i})^{n+1} \\
+      \end{align*}
+      The function $(\frac{1+z}{1-z})^{-1}=\frac{1-z}{1+z}$ has a simple zero at $z=1$. Therefore, $\frac{1+z}{1-z}$ has a simple 
+      pole at $z=1$, which gives a radius of convergence:
+      \begin{align*}
+        |i-1| &= \sqrt{1^{2}+1^{2}} \\
+          &= \sqrt{2}
+      \end{align*}
+      
+      \item We have (from lectures) that the Taylor series for trigonometric functions for the complex trigonometric functions are 
+      equivalent to those from the reals. Therefore:
+      \begin{align*}
+        z^{4}\cos(3z) &= z^{4}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}(3z)^{2n}
+      \end{align*}
+      As the function $1/z^{4}\cos(3z)$ has a zero only at infinity, the function is entire and the radius of convergence is infinite.
+     
+    \end{enumerate}
+    
+    \section*{Problem 2}
+    Let:
+    \begin{equation*}
+      f(z) = \sum_{n=0}^{\infty}\frac{f^{(n)}(z_{0})}{n!}(z-z_{0})^{n} = \sum_{n=0}^{\infty}a_{n}(z-z_{0})^{n}, \, a_{n} = \frac{f^{(n)}(z_{0})}{n!}
+    \end{equation*}
+    Let also $z_{0}=0$. We then have:
+    \begin{align*}
+      f(z)  &= \sum_{n=0}^{\infty}a_{n}(z-z_{0})^{n} \\
+            &= \sum_{n=0}^{\infty}a_{n}z^{n} \\
+            &= a_{0} + a_{1}z + \sum_{n=2}^{\infty}a_{n}z^{n} \\
+      zf'(z) &= z\sum_{n=1}^{\infty}na_{n}(z-z_{0})^{n-1} \\
+            &= z\sum_{n=1}^{\infty}na_{n}z^{n-1} \\
+            &= \sum_{n=1}^{\infty}na_{n}z^{n} \\
+            &= a_{1} + \sum_{n=2}^{\infty}na_{n}z^{n} \\
+      f''(z) &= \sum_{n=2}^{\infty}n(n-1)a_{n}(z-z_{0})^{n-2} \\
+            &= \sum_{n=2}^{\infty}n(n-1)a_{n}z^{n-2} \\
+            &= \sum_{n=0}^{\infty}(n+2)(n+1)a_{n+2}z^{n} \\
+            &= 2a_{0} + 6a_{1} + \sum_{n=2}^{\infty}(n+2)(n+1)a_{n+2}z^{n} \\
+    \end{align*}
+    Where:
+    \[
+      \begin{cases}
+        a_{0} = \frac{f(0)}{0!} = 1 \\
+        a_{1} = \frac{f'(0)}{1!} = 0
+      \end{cases}
+    \]
+    Plugging these back into the differential equation gives:
+    \begin{gather*}
+      2 + \sum_{n=2}^{\infty}(n+2)(n+1)a_{n+2}z^{n} - \sum_{n=2}^{\infty}na_{n}z^{n} - 1 - \sum_{n=2}^{\infty}a_{n}z^{n} = 0 \\
+      1 + \sum_{n=2}^{\infty}((n+2)(n+1)a_{n+2}-(n+1)a_{n})z^{n} = 0 
+    \end{gather*}
+    By comparing coefficients, we obtain the recursion relation:
+    \begin{align*}
+      (n+2)(n+1)a_{n+2}-(n+1)a_{n} &= 0 \\
+      (n+2)\cancel{(n+1)}a_{n+2} &= \cancel{(n+1)}a_{n} \\
+      a_{n+2} &= \frac{a_{n}}{n+2}
+    \end{align*}
+
+    Given that $a_{0}=1, \, a_{1} = 0$, and the above result, we have:
+    \begin{align*}
+      a_{2} &= \frac{a_{0}}{2} = \frac{1}{2} \\
+      a_{3} &= \frac{a_{1}}{3} = 0 \\
+      a_{4} &= \frac{a_{2}}{4} = \frac{1}{8}
+    \end{align*}
+    We can observe that, as all odd powered terms $a_{2k+1}=a_{2k-1}/(2k-1)$, $\forall k \in \mathbb{Z}, \, k \geq1$ (i.e. each odd numbered term
+    is a factor of the previous odd powered term), as the first odd powered term $a_{1}=0$, all subsequent odd powered terms will be $0$. Meanwhile,
+    the even powered terms have the recursion relation:
+    \begin{align*}
+      a_{2k+2} &= \frac{a_{2k}}{2k+2} \\
+        &= \frac{a_{2k-2}}{(2k+2)(2k-2)} \\
+        &= \frac{a_{2k-4}}{(2k+2)(2k-2)(2k-4)} \\
+        &= \ldots 
+    \end{align*}
+    Let $j=k+1$. Then:
+    \begin{align*}
+      a_{2k+2} = a_{2j} &= \frac{a_{2j-2}}{2j-2} \\
+        &= \frac{a_{2j-4}}{(2j-2)(2j-4)} \\
+        &= \frac{a_{2j-6}}{(2j-2)(2j-4)(2j-6)} \\
+        &= \ldots \\
+        &= \frac{a_{((2j)!!)}}{(2j)!!}
+    \end{align*}
+    As the first even powered term has a numerator of 1, all subsequent even powered terms will have a numerator of 1 as well. 
+    Therefore we can rewrite the Maclaurin series of $f(z)$ as:
+    \begin{align*}
+      f(z) &= 1 + 0 + \underbrace[c]{\sum_{n=2}^{\infty}\frac{1}{(2n)!!}z^{2n}}_{we can use $2n$ as only the even power terms $\neq0$} \\
+        &= 1 + \underbrace[c]{\sum_{n=1}^{\infty}\frac{1}{(2n)!!}z^{2n}}_{we can start the series from $n=1$ as $a_{n}=0$} \\
+    \end{align*} \qed
+
+    
+
+    \section*{Problem 3}
+    We can rewrite $f(z)$ as:
+    \begin{align*}
+      f(z) &= \frac{1}{1-(-\Log(1-z))} \\
+          &= \sum_{n=0}^{\infty}(-1)^{n}(\Log(1-z))^{n},
+    \end{align*} using the geometric series.
+    
+\end{document}  
