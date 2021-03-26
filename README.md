@@ -3,17 +3,19 @@ Assignments for MATH 305 - Applied Complex Analysis at UBC Vancouver for the 202
 (on [VSCode](https://code.visualstudio.com/) with the [LaTeX Workshop plugin](https://github.com/James-Yu/LaTeX-Workshop)).
 Diagrams created with [Inkscape](https://inkscape.org/). 
 
+Note: Only a few problems from each assignment are chosen to be graded. 
+
 Instructor: Sven Bachmann
 
-| Assignment  | Grade |
-| :---------: | :---: |
-| 1     |    15/17    |
-| 2     |    17/18    |
-| 3     |    10/16    |
-| 4     |    12/15    |
-| 5     |    10/15    |
-| 6     |    13/15    |
-| 7     |    9/14     |
-| 8     |        |
+| Assignment  | Grade | Problems Graded |
+| :---------: | :---: | :--------------: |
+| 1     |    15/17    | 2, 3, 4 |
+| 2     |    17/18    | 2, 4, 5 |
+| 3     |    10/16    | 2, 3    |
+| 4     |    12/15    | 3, 4    |
+| 5     |    10/15    | 2, 5    |
+| 6     |    13/15    | 1, 3    |
+| 7     |    9/14     | 2, 3    |
+| 8     |             | 3       |
 | 9     |        |
 | 10    |        |
