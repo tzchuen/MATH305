@@ -1,0 +1,313 @@
+\documentclass[letterpaper, titlepage, DIV=14]{scrartcl}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+%\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=black, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{mathtools}
+%\usepackage{mcode}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{appendix}
+\usepackage{lipsum}
+\usepackage{listings}
+%\usepackage{fontawesome}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.75\columnwidth}
+    \import{./}{#1.pdf_tex}
+}
+
+\makeatletter
+\let\ams@underbrace=\underbrace
+\def\underbrace{\kernel@ifnextchar[{\underbrace@}{\underbrace@[l]}}% default value: l
+\def\underbrace@[#1]#2_#3{%
+  \ifx#1c\relax
+    \let\ubr@align\centering%
+  \else
+    \ifx#1l\relax
+      \let\ubr@align\raggedright%
+    \else
+      \ifx#1r\relax
+        \let\ubr@align\raggedleft%
+      \else
+        \ifx#1f\relax
+          \let\ubr@align\relax%
+        \else
+          \message{`#1' isn't a valid alignment specification for the underbrace command}%
+        \fi
+      \fi
+    \fi
+  \fi
+  \setbox0=\hbox{$\displaystyle#2$}%
+  \ams@underbrace{#2}_{\parbox[t]{\the\wd0}{\ubr@align#3}}%
+}
+\let\ubr@align\relax
+\makeatother
+
+\title{Assignment 9}
+\subtitle{MATH 305 - Applied Complex Analysis}
+\author{Zhi Chuen Tan (65408361)}
+\date{2020W2}
+\publishers{
+    \includegraphics[width=0.65\textwidth]{mathlogo.eps}}
+
+\setkomafont{pageheadfoot}{%
+\normalcolor}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+
+
+\ohead{MATH 305 201 \\ 2020W2}
+\chead{\Large{Assignment 9}}
+\ihead{Zhi Chuen Tan \\ 65408361}
+
+\usepackage{setspace} %For line spacing
+
+\setlength{\parindent}{0pt} % Disable indentation
+
+\begin{document}
+    \onehalfspacing
+    \hypersetup{pageanchor=false}
+    \begin{titlepage}
+        \maketitle
+        \vfill
+        
+    \end{titlepage}
+    \hypersetup{pageanchor=true}
+
+    \section*{Problem 1}
+    \begin{enumerate}[i)]
+      \item $f_{1}$ has an essential singularity at $z_{0}=0$, with the Laurent series:
+      \begin{align*}
+        f_{1}(z) &= z^{2}(1 + \frac{1}{z} + \frac{1}{2}(\frac{1}{z^{2}}) + \frac{1}{3!}(\frac{1}{z^{3}}) + \ldots) \\
+          &= z^{2} + z + \frac{1}{2} + \frac{1}{6}(\frac{1}{z}) + \ldots \\
+          &= \ldots + \frac{1}{6}z^{-1} + \ldots \\
+        \Rightarrow a^{-1} &= \frac{1}{6} = \Res(f_{1} \, ; \, 0)
+      \end{align*}
+      
+      
+      \item
+      $f_{2}$ has a simple pole at $z_{0}=0$ and a pole of order $2$ at $z_{1}=\frac{\pi}{2}$. For the simple pole:
+      \begin{align*}
+        \Res(f_{2} \, ; \, 0) &= \lim_{z\to z_{0}}(z)(\frac{\cos(2z)}{z(z-\frac{\pi}{2})^{2}}) \\
+          &= \lim_{z\to 0}(\frac{\cos(2z)}{(z-\frac{\pi}{2})^{2}}) \\
+          &= \frac{1}{\frac{\pi^{2}}{4}} \\
+          &= \frac{4}{\pi^{2}}
+      \end{align*}
+
+      For the pole of order $2$:
+      \begin{align*}
+        \Res(f_{2} \, ; \, \frac{\pi}{2}) &= \lim_{z\to \frac{\pi}{2}} \frac{d}{dz}((z-\frac{\pi}{2})^{2}(\frac{\cos(2z)}{z(z-\frac{\pi}{2})^{2}})) \\
+        &= \lim_{z\to \frac{\pi}{2}} \frac{d}{dz}(\frac{\cos(2z)}{z}) \\
+        &= \lim_{z\to \frac{\pi}{2}} -(\frac{2\sin(2z)}{z} + \frac{\cos(2z)}{z^{2}}) \\
+        &= -(\frac{2\sin(\pi)}{\frac{\pi}{2}} + \frac{\cos(\pi)}{\frac{\pi^{2}}{4}}) \\
+        &= -(-\frac{4}{\pi^{2}}) \\
+        &= \frac{4}{\pi^{2}}
+      \end{align*}
+
+      \item 
+      \begin{enumerate}[a)]
+        \item
+        The essential singularity $z_{0}=0$ lies in the unit circle. Laurent's Theorem then gives:
+        \begin{align*}
+          \oint_{|z|=1}f_{1}(z) &= 2\pi ia_{-1} = 2\pi i\Res(f_{1} \, ; \, 0) \\
+            &= 2\pi i (\frac{1}{6}) \\
+            &= \frac{\pi}{3}i
+        \end{align*}
+
+        \item 
+        Both residues of $f_{2}$ are equal and lie in the unit circle. The Residue Theorem then gives:
+        \begin{align*}
+          \oint_{|z|=1}f_{2}(z) &= 2\pi i(\frac{4}{\pi^{2}} + \frac{4}{\pi^{2}}) \\
+            &= \frac{16}{\pi}i
+        \end{align*}
+      \end{enumerate}
+    
+    \end{enumerate}
+
+    \section*{Problem 2}
+    \begin{enumerate}[i)]
+      \item
+      We have the identity $\tan(z) = \sin(z)/\cos(z)$, and we can therefore observe that $\tan(z)$ has $2$ simple poles at
+      $z_{0}=\frac{\pi}{2}$ and $z_{1}=\frac{3\pi}{2}$ that lie in the contour $|z|=2\pi$.  Then:
+      \begin{align*}
+        \Res(\tan(z) \, ; \, z_{0} ) &= \frac{\sin(z_{0})}{(\cos(z_{0}))'} = \frac{\sin(\frac{\pi}{2})}{-\sin(\frac{3\pi}{2})} \\
+          &= -1 \\
+        \Res(\tan(z) \, ; \, z_{1} ) &= \frac{\sin(z_{1})}{(\cos(z_{1}))'} = \frac{\sin(\frac{3\pi}{2})}{-\sin(\frac{3\pi}{2})} \\
+          &= -1
+      \end{align*}
+      The Residue Theorem then gives:
+      \begin{align*}
+        \oint_{|z|=2\pi} \tan(z) &= 2\pi i (-1 + -1) \\
+          &= -4\pi i
+      \end{align*}
+      
+      \item 
+      We use the function $f(z) = \frac{e^{2z}}{\cosh(\pi z)}$. We have that:
+      \begin{align*}
+        f(z) &= \frac{e^{2z}}{\cosh(\pi z)} = \frac{e^{2z}}{\cos(i\pi z)} \\
+          &= \frac{e^{2z}}{\frac{1}{2}(e^{i(i\pi z)} + e^{-i(i\pi z)})}
+      \end{align*}
+      \begin{align*}
+        f(z) &= \frac{e^{2z}}{\frac{1}{2}(e^{-\pi z} + e^{\pi z})} \\
+          &= \frac{2e^{2z}}{e^{-\pi z}(1 + e^{2\pi z})} \\
+          &= \frac{2e^{(2+\pi)z}}{1 + e^{2\pi z}} \\
+      \end{align*}
+      We note that:
+      \begin{align*}
+        1 + e^{2\pi z} &= 0 \,  \text{ if and only if} \\
+        2\pi z &= n\pi i, \, \forall n \in \mathbb{Z}\backslash\{0\} \\
+        \Rightarrow z &= \frac{n}{2}i,
+      \end{align*} meaning $f(z)$ has singularities $\frac{n}{2}i$ for all positive non-zero integer values of $n$. We now consider the positively oriented countour as shown in \autoref{fig:2-1}.
+      \begin{figure}[!h]
+        \centering
+        \incfig{2-1}
+        \caption{}
+        \label{fig:2-1}
+    \end{figure} \\
+    We assume (for now) that the subsequent poles of $f(z)$ (i.e. $\pi i$, $\frac{3\pi}{2}i$, $\ldots$) lie outside this contour. By the Residue Theorem, we have (for this rectangular contour):
+    \begin{align*}
+      \oint_{\alpha} f(z) \, dz &= \int_{\alpha_{1}} f(z) \, dz + \int_{\alpha_{2}} f(z) \, dz + \int_{\alpha_{3}} f(z) \, dz + \int_{\alpha_{4}} f(z) \, dz \\
+        &= 2\pi i \Res(f \, ; \, \frac{1}{2} i) \\
+        &= 2\pi i \Res(\frac{2e^{(2+\pi)z}}{1 + e^{2\pi z}} \, ; \, \frac{1}{2} i) \\
+        &= 2\pi i (\frac{2e^{(2+\pi)z}}{2\pi e^{2\pi z}})\Big|_{z=\frac{1}{2} i} \\
+    \end{align*}
+    \begin{align*}
+      \oint_{\alpha} f(z) \, dz &= \frac{2e^{(2+\pi)(\frac{1}{2} i)}}{e^{2\pi(\frac{1}{2} i)}} i \\
+        &= \frac{2e^{i+i\pi}}{e^{i\pi}} i \\
+        &= -2ie^{i}
+    \end{align*}
+    Let $\alpha_{2}(t) = R + ti$ for $t\in[0,1]$. This gives:
+    \begin{align*}
+      \ell(\alpha_{2}) &= \int_{0}^{1} |i| \, dt \\
+        &= 1
+    \end{align*}
+    Therefore:
+    \begin{equation*}
+      \Big|\int_{\alpha_{2}} f(z) \, dz \Big| \leq \ell(\alpha_{2}) \, \max\{|f(\alpha_{2}(t))| \, : \, t\in[0,1]\} \leq \frac{2e^{(2+\pi)R + (2+\pi)ti}}{1+e^{2\pi R}e^{2\pi ti}}
+    \end{equation*}
+    For large $R$, we can estimate that:
+    \begin{equation*}
+      \frac{2e^{(2+\pi)R + (2+\pi)ti}}{1+e^{2\pi R}e^{2\pi ti}} \approx \frac{e^{2+\pi R}}{e^{2\pi R}}
+    \end{equation*}
+    Since $2\pi > 2+\pi$, we then have that:
+    \begin{equation*}
+      \Big|\int_{\alpha_{2}} f(z) \, dz \Big| \leq \frac{e^{2+\pi R}}{e^{2\pi R}} \to 0, \text{ as } R\to\infty
+    \end{equation*}
+    We can conclude similarly that:
+    \begin{equation*}
+      \Big|\int_{\alpha_{4}} f(z) \, dz \Big| \to 0 \text{ as } R\to\infty
+    \end{equation*}
+    This leaves us with:
+    \begin{equation*}
+      \int_{\alpha_{1}} f(z) \, dz + \int_{\alpha_{3}} f(z) \, dz = -2ie^{i}
+    \end{equation*}
+    Let $\alpha_{1}(x)=x$ for $x\in[-R,R]$; $\alpha_{3}(x)=x + i$ for $x\in[R,-R]$:
+    \begin{align*}
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} (1) \, dx + \int_{\infty}^{-\infty} \frac{e^{2(x+i)}}{\frac{1}{2}(e^{\pi x+\pi i}+e^{-\pi x-\pi i})}(1) &= -2ie^{i} \\
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx - \int_{-\infty}^{\infty} \frac{e^{2x}e^{2i}}{\frac{1}{2}(e^{\pi x}e^{\pi i}+e^{-\pi x}e^{-\pi i})} \, dx &= -2ie^{i} \\
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx - e^{2i}\int_{-\infty}^{\infty} \frac{e^{2x}}{\frac{1}{2}e^{\pi i}(e^{\pi x}+e^{-\pi x})} \, dx &= -2ie^{i} 
+    \end{align*}
+    \begin{gather*}
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx + e^{2i}\int_{-\infty}^{\infty} \frac{e^{2x}}{\frac{1}{2}(e^{\pi x}+e^{-\pi x})} \, dx = -2ie^{i} \\
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx + e^{2i}\int_{-\infty}^{\infty} \frac{e^{-2x}}{\cosh(\pi x)} \, dx = -2ie^{i} \\
+      (1+e^{2i})\int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx = -2ie^{i} \\
+      \int_{-\infty}^{\infty} \frac{e^{2x}}{\cosh(\pi x)} \, dx = -\frac{2ie^{i}}{1+e^{2i}} 
+    \end{gather*}
+    \end{enumerate}
+
+    \section*{Problem 3}
+    Let $P(z)=c(z-z_{1})(z-z_{2})\ldots(z-z_{d})$. By the product rule (\href{https://en.wikipedia.org/wiki/Product_rule}{according to Wikipedia}), we have:
+    \begin{equation}
+      P'(z) = c (\prod_{j=1}^{d}(z-z_{j}))(\sum_{j=1}^{d}\frac{1}{z-z_{j}}) \label{eq:p'}
+    \end{equation}
+    Using similar notation, we can express $P(z)$ as:
+    \begin{equation}
+      P(z) = c\prod_{j=1}^{d}(z-z_{j}) \label{eq:p}
+    \end{equation}
+    Taking \eqref{eq:p'}$/$\eqref{eq:p} then gives:
+    \begin{align*}
+      \frac{P'(z)}{P(z)} &= \frac{\cancel{c (\prod_{j=1}^{d}(z-z_{j}))}(\sum_{j=1}^{d}\frac{1}{z-z_{j}})}{\cancel{c\prod_{j=1}^{d}(z-z_{j})}} \\
+        &= \sum_{j=1}^{d}\frac{1}{z-z_{j}} \\
+        &= \frac{1}{z-z_{1}} + \frac{1}{z-z_{2}} + \frac{1}{z-z_{3}} + \ldots \frac{1}{z-z_{d}}
+    \end{align*}
+    The residue of $P'(z)/P(z)$ at $z_{j}$, for $j\in[1,d]$, is defined as the coefficient of the term(s) w.r.t $z^{-1}$, and we can observe that all terms in the above expression are $z^{-1}$ terms. Therefore, we can conclude that the function $P'(z)/P(z)$ has $d$ residues, and that:
+    \begin{equation}
+      \begin{cases}
+        \Res(\frac{P'(z)}{P(z)} \, ; \, z_{j}) = 1, & \text{if } z_{j}\in\text{int}(\alpha), \\
+        \Res(\frac{P'(z)}{P(z)} \, ; \, z_{j}) = 0, & \text{if } z_{j}\notin \text{int}(\alpha),
+      \end{cases} \label{eq:p-res}
+    \end{equation}
+  
+    By the residue theorem:
+    \begin{equation*}
+      \oint_{\alpha}\frac{P'(z)}{P(z)} \, dz = 2\pi i \sum_{z_{j}\in\text{int}(\alpha)} \Res(\frac{P'(z)}{P(z)} \, ; \, z_{j})
+    \end{equation*}
+    \begin{align*}
+      \frac{1}{2\pi i}\oint_{\alpha}\frac{P'(z)}{P(z)} \, dz &= \sum_{z_{j}\in\text{int}(\alpha)} \Res(\frac{P'(z)}{P(z)} \, ; \, z_{j}) \\
+      &= \sum_{z_{j}\in\text{int}(\alpha)} 1, \text{ from \eqref{eq:p-res}} \\
+      &= N,
+    \end{align*} as it is given that $N$ counts the number of zeros of $P\in\text{int}(\alpha)$. \qed
+    
+    
+    \section*{Problem 4}
+    Let $f(z)=\frac{1}{z^{2}}$. From the lecture notes, we then have:
+    \begin{align*}
+      \Res(\frac{\pi\cot(\pi z)}{z^{2}} \, ; \, n) &= \frac{1}{n^{2}}, \, \forall n \in \mathbb{Z}\backslash 
+    \{0\} \\
+    \therefore \frac{1}{2\pi i}\oint_{\alpha}\frac{\pi\cot(\pi z)}{z^{2}} &= \sum_{j=-\infty}^{-1} \frac{1}{j^{2}} + \sum_{j=1}^{\infty} \frac{1}{j^{2}} + \Res(\frac{\pi\cot(\pi z)}{z^{2}} \, ; \, 0)
+    \end{align*}
+    We can observe that:
+    \begin{align}
+      \frac{1}{(-n)^{2}} &= \frac{1}{n^{2}}, \, \forall n\in \mathbb{Z}\backslash\{0\} \nonumber \\ 
+      \therefore \frac{1}{2\pi i}\oint_{\alpha}\frac{\pi\cot(\pi z)}{z^{2}} &= 2\sum_{j=1}^{\infty} \frac{1}{j^{2}} + \Res(\frac{\pi\cot(\pi z)}{z^{2}} \, ; \, 0) \label{eq:4-1}
+    \end{align}
+    For the residue at the pole of order 3 at $z_{0}=0$:
+    \begin{align*}
+      \Res(\frac{\pi\cot(\pi z)}{z^{2}} \, ; \, 0) &= \frac{1}{(3-1)!} \lim_{z\to0}\frac{d^{3-1}}{dz^{3-1}}z^{3}\frac{\pi\cot(\pi z)}{z^{2}} \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\pi z\cot(\pi z) \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\frac{\pi z \cos(\pi z)}{\sin(\pi z)} \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\frac{\pi z\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}(\pi z)^{2n}}{\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n+1)!}(\pi z)^{2n+1}} \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\frac{\cancel{\pi z}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}(\pi z)^{2n}}{\cancel{\pi z}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n+1)!}(\pi z)^{2n}} \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\frac{\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}(\pi z)^{2n}}{\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n+1)!}(\pi z)^{2n}} \\
+    \end{align*}
+    \begin{align*}
+      \Res(\frac{\pi\cot(\pi z)}{z^{2}} \, ; \, 0) &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}}\frac{1-\frac{1}{2}\pi^{2}z^{2}+\frac{1}{4!}\pi^{4}z^{4}-\frac{1}{6!}\pi^{6}z^{6} + \ldots}{1 - \frac{1}{3!}\pi^{2}z^{2} + \frac{1}{5!}\pi^{4}z^{4} -\frac{1}{7!}\pi^{6}z^{6} + \ldots } \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d^{2}}{dz^{2}} (1 - \frac{1}{3}\pi^{2} z^{2} + \ldots), \text{ by long division} \\
+      &= \frac{1}{2} \lim_{z\to0}\frac{d}{dz} (-\frac{2}{3}(\pi^{2} z) + \ldots) \\
+      &= \frac{1}{2} \lim_{z\to0}(-\frac{2}{3}\pi^{2} + \ldots) \\
+      &= \frac{1}{\cancel{2}}(-\frac{\cancel{2}}{3}\pi^{2}) \\
+      &= -\frac{\pi^{2}}{3}
+    \end{align*}
+    Combining this result with \eqref{eq:4-1} gives:
+    \begin{align*}
+      \frac{1}{2\pi i}\oint_{\alpha}\frac{\pi\cot(\pi z)}{z^{2}} &= 2\sum_{j=1}^{\infty} \frac{1}{j^{2}} -\frac{\pi^{2}}{3} \\
+      \oint_{\alpha}\frac{\pi\cot(\pi z)}{z^{2}} &= 4\pi i\sum_{j=1}^{\infty} \frac{1}{j^{2}} -\frac{2\pi^{3}}{3}i \\
+    \end{align*}
+    We use a square contour $\alpha$ with side length $2N+1$. This gives us $\ell(\alpha)=4(2N+1)=8N+4$. As $|\cot(\pi z)|$ is bounded away from the real integers:
+    \begin{equation*}
+      \therefore \Big|\oint_{\alpha}\frac{\pi\cot(\pi z)}{z^{2}} \Big| \leq \frac{c_{N}(8N+4)}{N^{2}}\underbrace[c]{\approx \frac{1}{N}}_{for large N} \to 0 \text{ as } N\to \infty
+    \end{equation*}
+    where $c_{N}$ is some constant obtained from $|\cot(\pi z)|$. This gives us:
+    \begin{gather*}
+      4\pi i\sum_{j=1}^{\infty} \frac{1}{j^{2}} -\frac{2\pi^{3}}{3}i = 0 \\
+      4\pi i\sum_{j=1}^{\infty} \frac{1}{j^{2}} = \frac{2\pi^{3}}{3}i \\
+      2\sum_{j=1}^{\infty} \frac{1}{j^{2}} = \frac{\pi^{2}}{3} 
+    \end{gather*} 
+    \begin{equation*}
+      \sum_{j=1}^{\infty} \frac{1}{j^{2}} = \frac{\pi^{2}}{6} \text{\qed}
+    \end{equation*}
+\end{document}  
