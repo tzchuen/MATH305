@@ -11,6 +11,8 @@ This repository hosts my assignment solutions for MATH 305 at UBC Vancouver for 
 (on [VSCode](https://code.visualstudio.com/) with the [LaTeX Workshop plugin](https://github.com/James-Yu/LaTeX-Workshop)).
 Diagrams created with [Inkscape](https://inkscape.org/). 
 
+The actual solutions files are `main.pdf`, while the LaTeX source code files are `main.tex`.
+
 **Note**: Only a few problems from each assignment are chosen to be graded. 
 
 ## Academic Honesty and Standards
